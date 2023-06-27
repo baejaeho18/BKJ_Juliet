@@ -1,0 +1,370 @@
+Compiled from "CWE609_Double_Checked_Locking__Thread_01.java"
+public class testcases.CWE609_Double_Checked_Locking.CWE609_Double_Checked_Locking__Thread_01 extends testcasesupport.AbstractTestCase {
+  private static java.lang.String stringBad;
+
+  private static volatile java.lang.String stringGood1;
+
+  private static java.lang.String stringGood2;
+
+  private static java.lang.String stringGood3;
+
+  private static java.lang.String stringGood4;
+
+  private static final java.lang.Object stringGood4Lock;
+
+  private static java.lang.String stringGood5;
+
+  private static final java.util.concurrent.locks.ReentrantLock good5ReentrantLock;
+
+  public testcases.CWE609_Double_Checked_Locking.CWE609_Double_Checked_Locking__Thread_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public static java.lang.String helperBad();
+    Code:
+       0: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+       3: ifnonnull     32
+       6: ldc           #8                  // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01
+       8: dup
+       9: astore_0
+      10: monitorenter
+      11: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+      14: ifnonnull     22
+      17: ldc           #13                 // String stringBad
+      19: putstatic     #7                  // Field stringBad:Ljava/lang/String;
+      22: aload_0
+      23: monitorexit
+      24: goto          32
+      27: astore_1
+      28: aload_0
+      29: monitorexit
+      30: aload_1
+      31: athrow
+      32: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+      35: areturn
+    Exception table:
+       from    to  target type
+          11    24    27   any
+          27    30    27   any
+
+  public void bad() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #16                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$1
+       7: dup
+       8: aload_0
+       9: invokespecial #18                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$1."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #24                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$2
+      23: dup
+      24: aload_0
+      25: invokespecial #26                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$2."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public static java.lang.String helperGood1();
+    Code:
+       0: getstatic     #33                 // Field stringGood1:Ljava/lang/String;
+       3: ifnonnull     32
+       6: ldc           #8                  // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01
+       8: dup
+       9: astore_0
+      10: monitorenter
+      11: getstatic     #33                 // Field stringGood1:Ljava/lang/String;
+      14: ifnonnull     22
+      17: ldc           #36                 // String stringGood1
+      19: putstatic     #33                 // Field stringGood1:Ljava/lang/String;
+      22: aload_0
+      23: monitorexit
+      24: goto          32
+      27: astore_1
+      28: aload_0
+      29: monitorexit
+      30: aload_1
+      31: athrow
+      32: getstatic     #33                 // Field stringGood1:Ljava/lang/String;
+      35: areturn
+    Exception table:
+       from    to  target type
+          11    24    27   any
+          27    30    27   any
+
+  public void good1() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #37                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$3
+       7: dup
+       8: aload_0
+       9: invokespecial #39                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$3."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #40                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$4
+      23: dup
+      24: aload_0
+      25: invokespecial #42                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$4."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public static synchronized java.lang.String helperGood2();
+    Code:
+       0: getstatic     #43                 // Field stringGood2:Ljava/lang/String;
+       3: ifnonnull     11
+       6: ldc           #46                 // String stringGood2
+       8: putstatic     #43                 // Field stringGood2:Ljava/lang/String;
+      11: getstatic     #43                 // Field stringGood2:Ljava/lang/String;
+      14: areturn
+
+  public void good2() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #47                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$5
+       7: dup
+       8: aload_0
+       9: invokespecial #49                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$5."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #50                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$6
+      23: dup
+      24: aload_0
+      25: invokespecial #52                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$6."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public static java.lang.String helperGood3();
+    Code:
+       0: ldc           #8                  // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01
+       2: dup
+       3: astore_0
+       4: monitorenter
+       5: getstatic     #53                 // Field stringGood3:Ljava/lang/String;
+       8: ifnonnull     16
+      11: ldc           #56                 // String stringGood3
+      13: putstatic     #53                 // Field stringGood3:Ljava/lang/String;
+      16: getstatic     #53                 // Field stringGood3:Ljava/lang/String;
+      19: aload_0
+      20: monitorexit
+      21: areturn
+      22: astore_1
+      23: aload_0
+      24: monitorexit
+      25: aload_1
+      26: athrow
+    Exception table:
+       from    to  target type
+           5    21    22   any
+          22    25    22   any
+
+  public void good3() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #57                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$7
+       7: dup
+       8: aload_0
+       9: invokespecial #59                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$7."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #60                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$8
+      23: dup
+      24: aload_0
+      25: invokespecial #62                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$8."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public static java.lang.String helperGood4();
+    Code:
+       0: getstatic     #63                 // Field stringGood4Lock:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #67                 // Field stringGood4:Ljava/lang/String;
+       9: ifnonnull     17
+      12: ldc           #70                 // String stringGood4
+      14: putstatic     #67                 // Field stringGood4:Ljava/lang/String;
+      17: getstatic     #67                 // Field stringGood4:Ljava/lang/String;
+      20: aload_0
+      21: monitorexit
+      22: areturn
+      23: astore_1
+      24: aload_0
+      25: monitorexit
+      26: aload_1
+      27: athrow
+    Exception table:
+       from    to  target type
+           6    22    23   any
+          23    26    23   any
+
+  public void good4() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #71                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$9
+       7: dup
+       8: aload_0
+       9: invokespecial #73                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$9."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #74                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$10
+      23: dup
+      24: aload_0
+      25: invokespecial #76                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$10."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public static java.lang.String helperGood5();
+    Code:
+       0: getstatic     #77                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+       3: invokevirtual #81                 // Method java/util/concurrent/locks/ReentrantLock.lock:()V
+       6: getstatic     #86                 // Field stringGood5:Ljava/lang/String;
+       9: ifnonnull     17
+      12: ldc           #89                 // String stringGood5
+      14: putstatic     #86                 // Field stringGood5:Ljava/lang/String;
+      17: getstatic     #86                 // Field stringGood5:Ljava/lang/String;
+      20: astore_0
+      21: getstatic     #77                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      24: invokevirtual #90                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      27: aload_0
+      28: areturn
+      29: astore_1
+      30: getstatic     #77                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      33: invokevirtual #90                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      36: aload_1
+      37: athrow
+    Exception table:
+       from    to  target type
+           6    21    29   any
+
+  public void good5() throws java.lang.InterruptedException;
+    Code:
+       0: new           #14                 // class java/lang/Thread
+       3: dup
+       4: new           #93                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$11
+       7: dup
+       8: aload_0
+       9: invokespecial #95                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$11."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      12: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #14                 // class java/lang/Thread
+      19: dup
+      20: new           #96                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$12
+      23: dup
+      24: aload_0
+      25: invokespecial #98                 // Method testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01$12."<init>":(Ltestcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01;)V
+      28: invokespecial #21                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #27                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #30                 // Method java/lang/Thread.join:()V
+      48: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #99                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #102                // Method good2:()V
+       8: aload_0
+       9: invokevirtual #105                // Method good3:()V
+      12: aload_0
+      13: invokevirtual #108                // Method good4:()V
+      16: aload_0
+      17: invokevirtual #111                // Method good5:()V
+      20: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #114                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+
+  static {};
+    Code:
+       0: aconst_null
+       1: putstatic     #7                  // Field stringBad:Ljava/lang/String;
+       4: aconst_null
+       5: putstatic     #33                 // Field stringGood1:Ljava/lang/String;
+       8: aconst_null
+       9: putstatic     #43                 // Field stringGood2:Ljava/lang/String;
+      12: aconst_null
+      13: putstatic     #53                 // Field stringGood3:Ljava/lang/String;
+      16: aconst_null
+      17: putstatic     #67                 // Field stringGood4:Ljava/lang/String;
+      20: new           #118                // class java/lang/Object
+      23: dup
+      24: invokespecial #120                // Method java/lang/Object."<init>":()V
+      27: putstatic     #63                 // Field stringGood4Lock:Ljava/lang/Object;
+      30: aconst_null
+      31: putstatic     #86                 // Field stringGood5:Ljava/lang/String;
+      34: new           #82                 // class java/util/concurrent/locks/ReentrantLock
+      37: dup
+      38: invokespecial #121                // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+      41: putstatic     #77                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      44: return
+}

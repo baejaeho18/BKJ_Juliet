@@ -1,0 +1,106 @@
+Compiled from "CWE190_Integer_Overflow__long_rand_square_17.java"
+public class testcases.CWE190_Integer_Overflow.s04.CWE190_Integer_Overflow__long_rand_square_17 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE190_Integer_Overflow.s04.CWE190_Integer_Overflow__long_rand_square_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: iconst_0
+      12: istore_3
+      13: iload_3
+      14: iconst_1
+      15: if_icmpge     39
+      18: lload_1
+      19: lload_1
+      20: lmul
+      21: lstore        4
+      23: lload         4
+      25: invokedynamic #14,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      30: invokestatic  #18                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      33: iinc          3, 1
+      36: goto          13
+      39: return
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: ldc2_w        #24                 // long 2l
+       3: lstore_1
+       4: iconst_0
+       5: istore_3
+       6: iload_3
+       7: iconst_1
+       8: if_icmpge     32
+      11: lload_1
+      12: lload_1
+      13: lmul
+      14: lstore        4
+      16: lload         4
+      18: invokedynamic #14,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      23: invokestatic  #18                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      26: iinc          3, 1
+      29: goto          6
+      32: return
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: iconst_0
+      12: istore_3
+      13: iload_3
+      14: iconst_1
+      15: if_icmpge     78
+      18: lload_1
+      19: ldc2_w        #28                 // long -2147483648l
+      22: lcmp
+      23: ifeq          67
+      26: lload_1
+      27: ldc2_w        #32                 // long -9223372036854775808l
+      30: lcmp
+      31: ifeq          67
+      34: lload_1
+      35: invokestatic  #34                 // Method java/lang/Math.abs:(J)J
+      38: ldc2_w        #40                 // double 9.223372036854776E18d
+      41: invokestatic  #42                 // Method java/lang/Math.sqrt:(D)D
+      44: d2l
+      45: lcmp
+      46: ifgt          67
+      49: lload_1
+      50: lload_1
+      51: lmul
+      52: lstore        4
+      54: lload         4
+      56: invokedynamic #14,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      61: invokestatic  #18                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      64: goto          72
+      67: ldc           #46                 // String data value is too large to perform squaring.
+      69: invokestatic  #18                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      72: iinc          3, 1
+      75: goto          13
+      78: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #48                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #53                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #56                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

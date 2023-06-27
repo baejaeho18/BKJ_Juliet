@@ -1,0 +1,218 @@
+Compiled from "CWE190_Integer_Overflow__byte_rand_square_07.java"
+public class testcases.CWE190_Integer_Overflow.s01.CWE190_Integer_Overflow__byte_rand_square_07 extends testcasesupport.AbstractTestCase {
+  private int privateFive;
+
+  public testcases.CWE190_Integer_Overflow.s01.CWE190_Integer_Overflow__byte_rand_square_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     29
+       8: new           #13                 // class java/security/SecureRandom
+      11: dup
+      12: invokespecial #15                 // Method java/security/SecureRandom."<init>":()V
+      15: sipush        256
+      18: invokevirtual #18                 // Method java/security/SecureRandom.nextInt:(I)I
+      21: bipush        -128
+      23: iadd
+      24: i2b
+      25: istore_1
+      26: goto          31
+      29: iconst_0
+      30: istore_1
+      31: aload_0
+      32: getfield      #7                  // Field privateFive:I
+      35: iconst_5
+      36: if_icmpne     53
+      39: iload_1
+      40: iload_1
+      41: imul
+      42: i2b
+      43: istore_2
+      44: iload_2
+      45: invokedynamic #22,  0             // InvokeDynamic #0:makeConcatWithConstants:(B)Ljava/lang/String;
+      50: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      53: return
+
+  private void goodG2B1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     13
+       8: iconst_0
+       9: istore_1
+      10: goto          15
+      13: iconst_2
+      14: istore_1
+      15: aload_0
+      16: getfield      #7                  // Field privateFive:I
+      19: iconst_5
+      20: if_icmpne     37
+      23: iload_1
+      24: iload_1
+      25: imul
+      26: i2b
+      27: istore_2
+      28: iload_2
+      29: invokedynamic #22,  0             // InvokeDynamic #0:makeConcatWithConstants:(B)Ljava/lang/String;
+      34: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      37: return
+
+  private void goodG2B2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     13
+       8: iconst_2
+       9: istore_1
+      10: goto          15
+      13: iconst_0
+      14: istore_1
+      15: aload_0
+      16: getfield      #7                  // Field privateFive:I
+      19: iconst_5
+      20: if_icmpne     37
+      23: iload_1
+      24: iload_1
+      25: imul
+      26: i2b
+      27: istore_2
+      28: iload_2
+      29: invokedynamic #22,  0             // InvokeDynamic #0:makeConcatWithConstants:(B)Ljava/lang/String;
+      34: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      37: return
+
+  private void goodB2G1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     29
+       8: new           #13                 // class java/security/SecureRandom
+      11: dup
+      12: invokespecial #15                 // Method java/security/SecureRandom."<init>":()V
+      15: sipush        256
+      18: invokevirtual #18                 // Method java/security/SecureRandom.nextInt:(I)I
+      21: bipush        -128
+      23: iadd
+      24: i2b
+      25: istore_1
+      26: goto          31
+      29: iconst_0
+      30: istore_1
+      31: aload_0
+      32: getfield      #7                  // Field privateFive:I
+      35: iconst_5
+      36: if_icmpeq     47
+      39: ldc           #32                 // String Benign, fixed string
+      41: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      44: goto          100
+      47: iload_1
+      48: ldc           #36                 // int -2147483648
+      50: if_icmpeq     95
+      53: iload_1
+      54: i2l
+      55: ldc2_w        #39                 // long -9223372036854775808l
+      58: lcmp
+      59: ifeq          95
+      62: iload_1
+      63: invokestatic  #41                 // Method java/lang/Math.abs:(I)I
+      66: i2l
+      67: ldc2_w        #46                 // double 127.0d
+      70: invokestatic  #48                 // Method java/lang/Math.sqrt:(D)D
+      73: d2l
+      74: lcmp
+      75: ifgt          95
+      78: iload_1
+      79: iload_1
+      80: imul
+      81: i2b
+      82: istore_2
+      83: iload_2
+      84: invokedynamic #22,  0             // InvokeDynamic #0:makeConcatWithConstants:(B)Ljava/lang/String;
+      89: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      92: goto          100
+      95: ldc           #52                 // String data value is too large to perform squaring.
+      97: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     100: return
+
+  private void goodB2G2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     29
+       8: new           #13                 // class java/security/SecureRandom
+      11: dup
+      12: invokespecial #15                 // Method java/security/SecureRandom."<init>":()V
+      15: sipush        256
+      18: invokevirtual #18                 // Method java/security/SecureRandom.nextInt:(I)I
+      21: bipush        -128
+      23: iadd
+      24: i2b
+      25: istore_1
+      26: goto          31
+      29: iconst_0
+      30: istore_1
+      31: aload_0
+      32: getfield      #7                  // Field privateFive:I
+      35: iconst_5
+      36: if_icmpne     92
+      39: iload_1
+      40: ldc           #36                 // int -2147483648
+      42: if_icmpeq     87
+      45: iload_1
+      46: i2l
+      47: ldc2_w        #39                 // long -9223372036854775808l
+      50: lcmp
+      51: ifeq          87
+      54: iload_1
+      55: invokestatic  #41                 // Method java/lang/Math.abs:(I)I
+      58: i2l
+      59: ldc2_w        #46                 // double 127.0d
+      62: invokestatic  #48                 // Method java/lang/Math.sqrt:(D)D
+      65: d2l
+      66: lcmp
+      67: ifgt          87
+      70: iload_1
+      71: iload_1
+      72: imul
+      73: i2b
+      74: istore_2
+      75: iload_2
+      76: invokedynamic #22,  0             // InvokeDynamic #0:makeConcatWithConstants:(B)Ljava/lang/String;
+      81: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      84: goto          92
+      87: ldc           #52                 // String data value is too large to perform squaring.
+      89: invokestatic  #26                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      92: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method goodG2B1:()V
+       4: aload_0
+       5: invokevirtual #57                 // Method goodG2B2:()V
+       8: aload_0
+       9: invokevirtual #60                 // Method goodB2G1:()V
+      12: aload_0
+      13: invokevirtual #63                 // Method goodB2G2:()V
+      16: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #66                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

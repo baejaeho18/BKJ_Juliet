@@ -1,0 +1,111 @@
+Compiled from "CWE190_Integer_Overflow__short_rand_multiply_17.java"
+public class testcases.CWE190_Integer_Overflow.s05.CWE190_Integer_Overflow__short_rand_multiply_17 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE190_Integer_Overflow.s05.CWE190_Integer_Overflow__short_rand_multiply_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: ldc           #12                 // int 65536
+       9: invokevirtual #13                 // Method java/security/SecureRandom.nextInt:(I)I
+      12: sipush        -32768
+      15: iadd
+      16: i2s
+      17: istore_1
+      18: iconst_0
+      19: istore_2
+      20: iload_2
+      21: iconst_1
+      22: if_icmpge     49
+      25: iload_1
+      26: ifle          43
+      29: iload_1
+      30: iconst_2
+      31: imul
+      32: i2s
+      33: istore_3
+      34: iload_3
+      35: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      40: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      43: iinc          2, 1
+      46: goto          20
+      49: return
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: iconst_2
+       1: istore_1
+       2: iconst_0
+       3: istore_2
+       4: iload_2
+       5: iconst_1
+       6: if_icmpge     33
+       9: iload_1
+      10: ifle          27
+      13: iload_1
+      14: iconst_2
+      15: imul
+      16: i2s
+      17: istore_3
+      18: iload_3
+      19: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      24: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      27: iinc          2, 1
+      30: goto          4
+      33: return
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: ldc           #12                 // int 65536
+       9: invokevirtual #13                 // Method java/security/SecureRandom.nextInt:(I)I
+      12: sipush        -32768
+      15: iadd
+      16: i2s
+      17: istore_1
+      18: iconst_0
+      19: istore_2
+      20: iload_2
+      21: iconst_1
+      22: if_icmpge     64
+      25: iload_1
+      26: ifle          58
+      29: iload_1
+      30: sipush        16383
+      33: if_icmpge     53
+      36: iload_1
+      37: iconst_2
+      38: imul
+      39: i2s
+      40: istore_3
+      41: iload_3
+      42: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      47: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      50: goto          58
+      53: ldc           #27                 // String data value is too large to perform multiplication.
+      55: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      58: iinc          2, 1
+      61: goto          20
+      64: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #29                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #34                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #37                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

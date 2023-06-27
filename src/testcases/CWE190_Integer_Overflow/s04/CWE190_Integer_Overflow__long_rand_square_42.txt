@@ -1,0 +1,109 @@
+Compiled from "CWE190_Integer_Overflow__long_rand_square_42.java"
+public class testcases.CWE190_Integer_Overflow.s04.CWE190_Integer_Overflow__long_rand_square_42 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE190_Integer_Overflow.s04.CWE190_Integer_Overflow__long_rand_square_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  private long badSource() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: lload_1
+      12: lreturn
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method badSource:()J
+       4: lstore_1
+       5: lload_1
+       6: lload_1
+       7: lmul
+       8: lstore_3
+       9: lload_3
+      10: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      15: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      18: return
+
+  private long goodG2BSource() throws java.lang.Throwable;
+    Code:
+       0: ldc2_w        #29                 // long 2l
+       3: lstore_1
+       4: lload_1
+       5: lreturn
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method goodG2BSource:()J
+       4: lstore_1
+       5: lload_1
+       6: lload_1
+       7: lmul
+       8: lstore_3
+       9: lload_3
+      10: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      15: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      18: return
+
+  private long goodB2GSource() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: lload_1
+      12: lreturn
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #34                 // Method goodB2GSource:()J
+       4: lstore_1
+       5: lload_1
+       6: ldc2_w        #39                 // long -2147483648l
+       9: lcmp
+      10: ifeq          52
+      13: lload_1
+      14: ldc2_w        #43                 // long -9223372036854775808l
+      17: lcmp
+      18: ifeq          52
+      21: lload_1
+      22: invokestatic  #45                 // Method java/lang/Math.abs:(J)J
+      25: ldc2_w        #51                 // double 9.223372036854776E18d
+      28: invokestatic  #53                 // Method java/lang/Math.sqrt:(D)D
+      31: d2l
+      32: lcmp
+      33: ifgt          52
+      36: lload_1
+      37: lload_1
+      38: lmul
+      39: lstore_3
+      40: lload_3
+      41: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      46: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      49: goto          57
+      52: ldc           #57                 // String data value is too large to perform squaring.
+      54: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      57: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #59                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #62                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #65                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

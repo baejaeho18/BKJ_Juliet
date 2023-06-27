@@ -1,0 +1,242 @@
+Compiled from "CWE833_Deadlock__synchronized_Objects_Servlet_01.java"
+public class testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_Objects_Servlet_01 extends testcasesupport.AbstractTestCaseServlet {
+  private static final long serialVersionUID;
+
+  private static int intBadNumber1;
+
+  private static final java.lang.Object BAD_NUMBER1_LOCK;
+
+  private static int intBadNumber2;
+
+  private static final java.lang.Object BAD_NUMBER2_LOCK;
+
+  private static int intGood1Number1;
+
+  private static final java.lang.Object GOOD_NUMBER1_LOCK;
+
+  private static int intGood1Number2;
+
+  private static final java.lang.Object GOOD_NUMBER2_LOCK;
+
+  public testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_Objects_Servlet_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public static void helperAddBad();
+    Code:
+       0: getstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #13                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+       9: dup
+      10: astore_1
+      11: monitorenter
+      12: getstatic     #16                 // Field intBadNumber1:I
+      15: getstatic     #20                 // Field intBadNumber2:I
+      18: iadd
+      19: putstatic     #16                 // Field intBadNumber1:I
+      22: aload_1
+      23: monitorexit
+      24: goto          32
+      27: astore_2
+      28: aload_1
+      29: monitorexit
+      30: aload_2
+      31: athrow
+      32: aload_0
+      33: monitorexit
+      34: goto          42
+      37: astore_3
+      38: aload_0
+      39: monitorexit
+      40: aload_3
+      41: athrow
+      42: return
+    Exception table:
+       from    to  target type
+          12    24    27   any
+          27    30    27   any
+           6    34    37   any
+          37    40    37   any
+
+  public static void helperMultiplyBad();
+    Code:
+       0: getstatic     #13                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+       9: dup
+      10: astore_1
+      11: monitorenter
+      12: getstatic     #16                 // Field intBadNumber1:I
+      15: getstatic     #20                 // Field intBadNumber2:I
+      18: imul
+      19: putstatic     #16                 // Field intBadNumber1:I
+      22: aload_1
+      23: monitorexit
+      24: goto          32
+      27: astore_2
+      28: aload_1
+      29: monitorexit
+      30: aload_2
+      31: athrow
+      32: aload_0
+      33: monitorexit
+      34: goto          42
+      37: astore_3
+      38: aload_0
+      39: monitorexit
+      40: aload_3
+      41: athrow
+      42: return
+    Exception table:
+       from    to  target type
+          12    24    27   any
+          27    30    27   any
+           6    34    37   any
+          37    40    37   any
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_1
+       1: invokeinterface #23,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.isRequestedSessionIdValid:()Z
+       6: ifeq          15
+       9: invokestatic  #29                 // Method helperAddBad:()V
+      12: goto          18
+      15: invokestatic  #32                 // Method helperMultiplyBad:()V
+      18: aload_2
+      19: invokeinterface #35,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      24: getstatic     #16                 // Field intBadNumber1:I
+      27: invokevirtual #41                 // Method java/io/PrintWriter.write:(I)V
+      30: return
+
+  public static void helperAddGood1();
+    Code:
+       0: getstatic     #47                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #50                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+       9: dup
+      10: astore_1
+      11: monitorenter
+      12: getstatic     #53                 // Field intGood1Number1:I
+      15: getstatic     #56                 // Field intGood1Number2:I
+      18: iadd
+      19: putstatic     #53                 // Field intGood1Number1:I
+      22: aload_1
+      23: monitorexit
+      24: goto          32
+      27: astore_2
+      28: aload_1
+      29: monitorexit
+      30: aload_2
+      31: athrow
+      32: aload_0
+      33: monitorexit
+      34: goto          42
+      37: astore_3
+      38: aload_0
+      39: monitorexit
+      40: aload_3
+      41: athrow
+      42: return
+    Exception table:
+       from    to  target type
+          12    24    27   any
+          27    30    27   any
+           6    34    37   any
+          37    40    37   any
+
+  public static void helperMultiplyGood1();
+    Code:
+       0: getstatic     #47                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #50                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+       9: dup
+      10: astore_1
+      11: monitorenter
+      12: getstatic     #53                 // Field intGood1Number1:I
+      15: getstatic     #56                 // Field intGood1Number2:I
+      18: imul
+      19: putstatic     #53                 // Field intGood1Number1:I
+      22: aload_1
+      23: monitorexit
+      24: goto          32
+      27: astore_2
+      28: aload_1
+      29: monitorexit
+      30: aload_2
+      31: athrow
+      32: aload_0
+      33: monitorexit
+      34: goto          42
+      37: astore_3
+      38: aload_0
+      39: monitorexit
+      40: aload_3
+      41: athrow
+      42: return
+    Exception table:
+       from    to  target type
+          12    24    27   any
+          27    30    27   any
+           6    34    37   any
+          37    40    37   any
+
+  public void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_1
+       1: invokeinterface #23,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.isRequestedSessionIdValid:()Z
+       6: ifeq          15
+       9: invokestatic  #59                 // Method helperAddGood1:()V
+      12: goto          18
+      15: invokestatic  #62                 // Method helperMultiplyGood1:()V
+      18: aload_2
+      19: invokeinterface #35,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      24: getstatic     #53                 // Field intGood1Number1:I
+      27: invokevirtual #41                 // Method java/io/PrintWriter.write:(I)V
+      30: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #65                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: return
+
+  static {};
+    Code:
+       0: iconst_3
+       1: putstatic     #16                 // Field intBadNumber1:I
+       4: new           #69                 // class java/lang/Object
+       7: dup
+       8: invokespecial #71                 // Method java/lang/Object."<init>":()V
+      11: putstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+      14: iconst_5
+      15: putstatic     #20                 // Field intBadNumber2:I
+      18: new           #69                 // class java/lang/Object
+      21: dup
+      22: invokespecial #71                 // Method java/lang/Object."<init>":()V
+      25: putstatic     #13                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+      28: iconst_3
+      29: putstatic     #53                 // Field intGood1Number1:I
+      32: new           #69                 // class java/lang/Object
+      35: dup
+      36: invokespecial #71                 // Method java/lang/Object."<init>":()V
+      39: putstatic     #47                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+      42: iconst_5
+      43: putstatic     #56                 // Field intGood1Number2:I
+      46: new           #69                 // class java/lang/Object
+      49: dup
+      50: invokespecial #71                 // Method java/lang/Object."<init>":()V
+      53: putstatic     #50                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+      56: return
+}

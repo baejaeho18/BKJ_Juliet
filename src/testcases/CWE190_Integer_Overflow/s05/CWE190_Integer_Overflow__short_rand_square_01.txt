@@ -1,0 +1,97 @@
+Compiled from "CWE190_Integer_Overflow__short_rand_square_01.java"
+public class testcases.CWE190_Integer_Overflow.s05.CWE190_Integer_Overflow__short_rand_square_01 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE190_Integer_Overflow.s05.CWE190_Integer_Overflow__short_rand_square_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: ldc           #12                 // int 65536
+       9: invokevirtual #13                 // Method java/security/SecureRandom.nextInt:(I)I
+      12: sipush        -32768
+      15: iadd
+      16: i2s
+      17: istore_1
+      18: iload_1
+      19: iload_1
+      20: imul
+      21: i2s
+      22: istore_2
+      23: iload_2
+      24: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      29: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      32: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #27                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #32                 // Method goodB2G:()V
+       8: return
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: iconst_2
+       1: istore_1
+       2: iload_1
+       3: iload_1
+       4: imul
+       5: i2s
+       6: istore_2
+       7: iload_2
+       8: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      13: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      16: return
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: ldc           #12                 // int 65536
+       9: invokevirtual #13                 // Method java/security/SecureRandom.nextInt:(I)I
+      12: sipush        -32768
+      15: iadd
+      16: i2s
+      17: istore_1
+      18: iload_1
+      19: ldc           #37                 // int -2147483648
+      21: if_icmpeq     66
+      24: iload_1
+      25: i2l
+      26: ldc2_w        #40                 // long -9223372036854775808l
+      29: lcmp
+      30: ifeq          66
+      33: iload_1
+      34: invokestatic  #42                 // Method java/lang/Math.abs:(I)I
+      37: i2l
+      38: ldc2_w        #47                 // double 32767.0d
+      41: invokestatic  #49                 // Method java/lang/Math.sqrt:(D)D
+      44: d2l
+      45: lcmp
+      46: ifgt          66
+      49: iload_1
+      50: iload_1
+      51: imul
+      52: i2s
+      53: istore_2
+      54: iload_2
+      55: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(S)Ljava/lang/String;
+      60: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      63: goto          71
+      66: ldc           #53                 // String data value is too large to perform squaring.
+      68: invokestatic  #21                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      71: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #55                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
