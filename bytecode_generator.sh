@@ -30,7 +30,7 @@ do
         while read line;
         do
             dfiles+=("$line")
-            dfile=$(echo "$dfile" | sed 's/\/\\/g')
+            dfile=$(echo "$dfile" | sed 's/\\/\\\\/g')
         done < "dirList.txt"
 
         for dfile in "${dfiles[@]}"; do
@@ -45,7 +45,7 @@ do
         while read line;
         do
             cfiles+=("$line")
-            cfile=$(echo "$cfile" | sed 's/\/\\/g')
+            cfile=$(echo "$cfile" | sed 's/\\/\\\\/g')
             # echo "$line"
         done < "classList.txt"
 
@@ -65,7 +65,7 @@ do
         while read line;
         do
             cfiles+=("$line")
-            cfile=$(echo "$cfile" | sed 's/\/\\/g')
+            cfile=$(echo "$cfile" | sed 's/\\/\\\\/g')
             # echo "$line"
         done < "classList.txt"
 
@@ -85,7 +85,7 @@ do
         while read line;
         do
             jfiles+=("$line")
-            jfile=$(echo "$jfile" | sed 's/\/\\/g')
+            jfile=$(echo "$jfile" | sed 's/\\/\\\\/g')
             # echo "$line"
         done < "javaList.txt"
 
