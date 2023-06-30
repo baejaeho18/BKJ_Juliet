@@ -1,5 +1,5 @@
 # BKJ-Juliet <br>
-
+<br>
 1) compile <br>
 javac -cp {lib} {supports} -g {target path} <br>
 javac -cp lib\servlet-api.jar;lib\commons-lang-2.5.jar;lib\commons-codec-1.5.jar;lib\javamail-1.4.4.jar src\testcasesupport\IO.java src\testcasesupport\AbstractTestCaseBase.java src\testcasesupport\AbstractTestCase.java src\testcasesupport\AbstractTestCaseBadOnly.java src\testcasesupport\AbstractTestCaseServletBase.java src\testcasesupport\AbstractTestCaseServlet.java src\testcasesupport\AbstractTestCaseServletBadOnly.java src\testcasesupport\AbstractTestCaseClassIssue.java src\testcasesupport\AbstractTestCaseClassIssueBad.java src\testcasesupport\AbstractTestCaseClassIssueGood.java -g C:\Users\USER\git\BKJ_Juliet\src\testcases\CWE23_Relative_Path_Traversal\*.java <br>
