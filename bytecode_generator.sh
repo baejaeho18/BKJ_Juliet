@@ -24,18 +24,19 @@ do
     case $opt in
         d)
         # dirList를 만든 후
-        cmd.exe /C 'dir /s /b /ad "src/testcases" > dirList.txt'
+        # cmd.exe /C 'dir /s /b /ad "src/testcases" > dirList.txt'
         # dirList에 따라 compile하고
         dfiles=()
         while read line;
         do
             dfiles+=("$line")
-            dfile=$(echo "$dfile" | sed 's/\\/\\\\/g')
+            # dfile=$(echo "$dfile" | sed 's/\\/\\\\/g')
         done < "dirList.txt"
 
         for dfile in "${dfiles[@]}"; do
+	echo "${dfile}"
             dfile=$(echo "$dfile" | sed 's/\r//g')
-            jfile=$(echo "$dfile/*.java")
+            jfile=$(echo "$dfile\*.java")
             javac -cp ${lib} ${supports} -g ${jfile}
         done
         # classList를 만든 후
