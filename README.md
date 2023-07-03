@@ -14,4 +14,4 @@ dir /s /b "src\testcases\*.java" > javaList.txt <br>
 <br>
 4) find dir pathes <br>
 dir /s /b /ad <br>
-dir /s /b /ad "src/testcases" > dirList.txt <br>
+dir /s /b /ad "src\testcases" > dirList.txt <br>
