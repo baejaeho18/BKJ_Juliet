@@ -16,6 +16,8 @@
 #   exit 1
 # fi
 
+# os가 linux이면 cmd.exe /C는 못쓰므로 find로 바꿔줘야함
+
 lib="lib\servlet-api.jar;lib\commons-lang-2.5.jar;lib\commons-codec-1.5.jar;lib\javamail-1.4.4.jar"
 supports="src\testcasesupport\IO.java src\testcasesupport\AbstractTestCaseBase.java src\testcasesupport\AbstractTestCase.java src\testcasesupport\AbstractTestCaseBadOnly.java src\testcasesupport\AbstractTestCaseServletBase.java src\testcasesupport\AbstractTestCaseServlet.java src\testcasesupport\AbstractTestCaseServletBadOnly.java src\testcasesupport\AbstractTestCaseClassIssue.java src\testcasesupport\AbstractTestCaseClassIssueBad.java src\testcasesupport\AbstractTestCaseClassIssueGood.java"
 
