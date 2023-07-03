@@ -1,0 +1,84 @@
+Compiled from "CWE511_Logic_Time_Bomb__rand_15.java"
+public class testcases.CWE511_Logic_Time_Bomb.CWE511_Logic_Time_Bomb__rand_15 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE511_Logic_Time_Bomb.CWE511_Logic_Time_Bomb__rand_15();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: bipush        7
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 48
+          }
+      20: new           #7                  // class java/security/SecureRandom
+      23: dup
+      24: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+      27: invokevirtual #10                 // Method java/security/SecureRandom.nextInt:()I
+      30: sipush        20000
+      33: if_icmpne     53
+      36: invokestatic  #14                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      39: ldc           #20                 // String c:\\windows\\system32\\evil.exe
+      41: invokevirtual #22                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      44: pop
+      45: goto          53
+      48: ldc           #26                 // String Benign, fixed string
+      50: invokestatic  #28                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      53: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: bipush        8
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 28
+          }
+      20: ldc           #26                 // String Benign, fixed string
+      22: invokestatic  #28                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      25: goto          49
+      28: new           #7                  // class java/security/SecureRandom
+      31: dup
+      32: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+      35: invokevirtual #10                 // Method java/security/SecureRandom.nextInt:()I
+      38: sipush        20000
+      41: if_icmpne     49
+      44: ldc           #34                 // String Sorry, your license has expired.  Please contact support.
+      46: invokestatic  #28                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      49: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: bipush        7
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 44
+          }
+      20: new           #7                  // class java/security/SecureRandom
+      23: dup
+      24: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+      27: invokevirtual #10                 // Method java/security/SecureRandom.nextInt:()I
+      30: sipush        20000
+      33: if_icmpne     49
+      36: ldc           #34                 // String Sorry, your license has expired.  Please contact support.
+      38: invokestatic  #28                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      41: goto          49
+      44: ldc           #26                 // String Benign, fixed string
+      46: invokestatic  #28                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      49: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #36                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #41                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #44                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

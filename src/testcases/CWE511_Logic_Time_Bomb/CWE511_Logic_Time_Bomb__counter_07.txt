@@ -1,0 +1,89 @@
+Compiled from "CWE511_Logic_Time_Bomb__counter_07.java"
+public class testcases.CWE511_Logic_Time_Bomb.CWE511_Logic_Time_Bomb__counter_07 extends testcasesupport.AbstractTestCase {
+  private int privateFive;
+
+  public testcases.CWE511_Logic_Time_Bomb.CWE511_Logic_Time_Bomb__counter_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     35
+       8: iconst_0
+       9: istore_1
+      10: iload_1
+      11: sipush        20000
+      14: if_icmpne     26
+      17: invokestatic  #13                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      20: ldc           #19                 // String c:\\windows\\system32\\evil.exe
+      22: invokevirtual #21                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      25: pop
+      26: iinc          1, 1
+      29: iload_1
+      30: ldc           #27                 // int 2147483647
+      32: if_icmplt     10
+      35: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     16
+       8: ldc           #28                 // String Benign, fixed string
+      10: invokestatic  #30                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      13: goto          39
+      16: iconst_0
+      17: istore_1
+      18: iload_1
+      19: sipush        20000
+      22: if_icmpne     30
+      25: ldc           #36                 // String Sorry, your license has expired.  Please contact support.
+      27: invokestatic  #30                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      30: iinc          1, 1
+      33: iload_1
+      34: ldc           #27                 // int 2147483647
+      36: if_icmplt     18
+      39: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     31
+       8: iconst_0
+       9: istore_1
+      10: iload_1
+      11: sipush        20000
+      14: if_icmpne     22
+      17: ldc           #36                 // String Sorry, your license has expired.  Please contact support.
+      19: invokestatic  #30                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      22: iinc          1, 1
+      25: iload_1
+      26: ldc           #27                 // int 2147483647
+      28: if_icmplt     10
+      31: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #38                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #41                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #44                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

@@ -1,0 +1,79 @@
+Compiled from "CWE506_Embedded_Malicious_Code__email_17.java"
+public class testcases.CWE506_Embedded_Malicious_Code.CWE506_Embedded_Malicious_Code__email_17 extends testcasesupport.AbstractTestCaseBadOnly {
+  public testcases.CWE506_Embedded_Malicious_Code.CWE506_Embedded_Malicious_Code__email_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseBadOnly."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iload_1
+       3: iconst_1
+       4: if_icmpge     127
+       7: new           #7                  // class java/util/Properties
+      10: dup
+      11: invokespecial #9                  // Method java/util/Properties."<init>":()V
+      14: astore_2
+      15: aload_2
+      16: aconst_null
+      17: invokestatic  #10                 // Method javax/mail/Session.getDefaultInstance:(Ljava/util/Properties;Ljavax/mail/Authenticator;)Ljavax/mail/Session;
+      20: astore_3
+      21: ldc           #16                 // String ...
+      23: astore        4
+      25: new           #18                 // class javax/mail/internet/MimeMessage
+      28: dup
+      29: aload_3
+      30: invokespecial #20                 // Method javax/mail/internet/MimeMessage."<init>":(Ljavax/mail/Session;)V
+      33: astore        5
+      35: aload         5
+      37: new           #23                 // class javax/mail/internet/InternetAddress
+      40: dup
+      41: ldc           #25                 // String sender@example.com
+      43: invokespecial #27                 // Method javax/mail/internet/InternetAddress."<init>":(Ljava/lang/String;)V
+      46: invokevirtual #30                 // Method javax/mail/Message.setFrom:(Ljavax/mail/Address;)V
+      49: aload         5
+      51: getstatic     #36                 // Field javax/mail/Message$RecipientType.TO:Ljavax/mail/Message$RecipientType;
+      54: new           #23                 // class javax/mail/internet/InternetAddress
+      57: dup
+      58: ldc           #42                 // String recipient@example.com
+      60: invokespecial #27                 // Method javax/mail/internet/InternetAddress."<init>":(Ljava/lang/String;)V
+      63: invokevirtual #44                 // Method javax/mail/Message.addRecipient:(Ljavax/mail/Message$RecipientType;Ljavax/mail/Address;)V
+      66: aload         5
+      68: ldc           #48                 // String Shhh, I\'m sending some bad stuff!
+      70: invokevirtual #50                 // Method javax/mail/Message.setSubject:(Ljava/lang/String;)V
+      73: aload         5
+      75: aload         4
+      77: invokevirtual #53                 // Method javax/mail/Message.setText:(Ljava/lang/String;)V
+      80: aload         5
+      82: invokestatic  #56                 // Method javax/mail/Transport.send:(Ljavax/mail/Message;)V
+      85: goto          121
+      88: astore        5
+      90: getstatic     #64                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      93: getstatic     #70                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      96: ldc           #76                 // String Address is formatted incorrectly
+      98: aload         5
+     100: invokevirtual #78                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     103: goto          121
+     106: astore        5
+     108: getstatic     #64                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     111: getstatic     #70                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     114: ldc           #86                 // String Error sending message
+     116: aload         5
+     118: invokevirtual #78                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     121: iinc          1, 1
+     124: goto          2
+     127: return
+    Exception table:
+       from    to  target type
+          25    85    88   Class javax/mail/internet/AddressException
+          25    85   106   Class javax/mail/MessagingException
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #88                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
