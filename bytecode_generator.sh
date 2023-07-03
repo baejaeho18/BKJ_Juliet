@@ -26,7 +26,7 @@ do
     case $opt in
         d)
         # dirList를 만든 후
-        # cmd.exe /C 'dir /s /b /ad "src/testcases" > dirList.txt'
+        # cmd.exe /C 'dir /s /b /ad "src\testcases" > dirList.txt'
         # dirList에 따라 compile하고
         dfiles=()
         while read line;
@@ -61,14 +61,14 @@ do
         
         c)
         # classList를 만든 후
-        cmd.exe /C 'dir /s /b "src\testcases\*.class" > classList.txt'
+        # cmd.exe /C 'dir /s /b "src\testcases\*.class" > classList.txt'
 
         # classList에 따라 decompile한다.
         cfiles=()
         while read line;
         do
             cfiles+=("$line")
-            cfile=$(echo "$cfile" | sed 's/\\/\\\\/g')
+            # cfile=$(echo "$cfile" | sed 's/\\/\\\\/g')
             # echo "$line"
         done < "classList.txt"
 
