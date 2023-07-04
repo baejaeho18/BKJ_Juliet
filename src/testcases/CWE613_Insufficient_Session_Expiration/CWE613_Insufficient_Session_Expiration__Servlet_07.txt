@@ -1,0 +1,113 @@
+Compiled from "CWE613_Insufficient_Session_Expiration__Servlet_07.java"
+public class testcases.CWE613_Insufficient_Session_Expiration.CWE613_Insufficient_Session_Expiration__Servlet_07 extends testcasesupport.AbstractTestCaseServlet {
+  private int privateFive;
+
+  public testcases.CWE613_Insufficient_Session_Expiration.CWE613_Insufficient_Session_Expiration__Servlet_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     34
+       8: aload_1
+       9: iconst_1
+      10: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      15: astore_3
+      16: aload_3
+      17: iconst_m1
+      18: invokeinterface #19,  2           // InterfaceMethod javax/servlet/http/HttpSession.setMaxInactiveInterval:(I)V
+      23: aload_2
+      24: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      29: ldc           #31                 // String bad(): Session still valid
+      31: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      34: return
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     16
+       8: ldc           #39                 // String Benign, fixed string
+      10: invokestatic  #41                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      13: goto          70
+      16: aload_1
+      17: iconst_1
+      18: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      23: astore_3
+      24: aload_3
+      25: invokeinterface #46,  1           // InterfaceMethod javax/servlet/http/HttpSession.getCreationTime:()J
+      30: ldc2_w        #50                 // long 30000l
+      33: ladd
+      34: invokestatic  #52                 // Method java/lang/System.currentTimeMillis:()J
+      37: lcmp
+      38: ifle          59
+      41: aload_2
+      42: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      47: ldc           #57                 // String good(): Invalidating session per absolute timeout enforcement
+      49: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      52: aload_3
+      53: invokeinterface #59,  1           // InterfaceMethod javax/servlet/http/HttpSession.invalidate:()V
+      58: return
+      59: aload_2
+      60: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      65: ldc           #62                 // String good(): Session still valid
+      67: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      70: return
+
+  private void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     62
+       8: aload_1
+       9: iconst_1
+      10: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      15: astore_3
+      16: aload_3
+      17: invokeinterface #46,  1           // InterfaceMethod javax/servlet/http/HttpSession.getCreationTime:()J
+      22: ldc2_w        #50                 // long 30000l
+      25: ladd
+      26: invokestatic  #52                 // Method java/lang/System.currentTimeMillis:()J
+      29: lcmp
+      30: ifle          51
+      33: aload_2
+      34: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      39: ldc           #57                 // String good(): Invalidating session per absolute timeout enforcement
+      41: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      44: aload_3
+      45: invokeinterface #59,  1           // InterfaceMethod javax/servlet/http/HttpSession.invalidate:()V
+      50: return
+      51: aload_2
+      52: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      57: ldc           #62                 // String good(): Session still valid
+      59: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      62: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #64                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #68                 // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #71                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

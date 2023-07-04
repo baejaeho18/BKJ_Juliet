@@ -1,0 +1,102 @@
+Compiled from "CWE613_Insufficient_Session_Expiration__Servlet_10.java"
+public class testcases.CWE613_Insufficient_Session_Expiration.CWE613_Insufficient_Session_Expiration__Servlet_10 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE613_Insufficient_Session_Expiration.CWE613_Insufficient_Session_Expiration__Servlet_10();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #7                  // Field testcasesupport/IO.staticTrue:Z
+       3: ifeq          32
+       6: aload_1
+       7: iconst_1
+       8: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      13: astore_3
+      14: aload_3
+      15: iconst_m1
+      16: invokeinterface #19,  2           // InterfaceMethod javax/servlet/http/HttpSession.setMaxInactiveInterval:(I)V
+      21: aload_2
+      22: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      27: ldc           #31                 // String bad(): Session still valid
+      29: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      32: return
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #39                 // Field testcasesupport/IO.staticFalse:Z
+       3: ifeq          14
+       6: ldc           #42                 // String Benign, fixed string
+       8: invokestatic  #44                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      11: goto          68
+      14: aload_1
+      15: iconst_1
+      16: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      21: astore_3
+      22: aload_3
+      23: invokeinterface #47,  1           // InterfaceMethod javax/servlet/http/HttpSession.getCreationTime:()J
+      28: ldc2_w        #51                 // long 30000l
+      31: ladd
+      32: invokestatic  #53                 // Method java/lang/System.currentTimeMillis:()J
+      35: lcmp
+      36: ifle          57
+      39: aload_2
+      40: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      45: ldc           #58                 // String good(): Invalidating session per absolute timeout enforcement
+      47: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      50: aload_3
+      51: invokeinterface #60,  1           // InterfaceMethod javax/servlet/http/HttpSession.invalidate:()V
+      56: return
+      57: aload_2
+      58: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      63: ldc           #63                 // String good(): Session still valid
+      65: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      68: return
+
+  private void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #7                  // Field testcasesupport/IO.staticTrue:Z
+       3: ifeq          60
+       6: aload_1
+       7: iconst_1
+       8: invokeinterface #13,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      13: astore_3
+      14: aload_3
+      15: invokeinterface #47,  1           // InterfaceMethod javax/servlet/http/HttpSession.getCreationTime:()J
+      20: ldc2_w        #51                 // long 30000l
+      23: ladd
+      24: invokestatic  #53                 // Method java/lang/System.currentTimeMillis:()J
+      27: lcmp
+      28: ifle          49
+      31: aload_2
+      32: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      37: ldc           #58                 // String good(): Invalidating session per absolute timeout enforcement
+      39: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      42: aload_3
+      43: invokeinterface #60,  1           // InterfaceMethod javax/servlet/http/HttpSession.invalidate:()V
+      48: return
+      49: aload_2
+      50: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      55: ldc           #63                 // String good(): Session still valid
+      57: invokevirtual #33                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      60: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #65                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #71                 // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #74                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
