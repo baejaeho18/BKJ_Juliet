@@ -1,0 +1,164 @@
+Compiled from "CWE327_Use_Broken_Crypto__DES_08.java"
+public class testcases.CWE327_Use_Broken_Crypto.CWE327_Use_Broken_Crypto__DES_08 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE327_Use_Broken_Crypto.CWE327_Use_Broken_Crypto__DES_08();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  private boolean privateReturnsTrue();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  private boolean privateReturnsFalse();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          85
+       7: ldc           #13                 // String ABCDEFG123456
+       9: astore_1
+      10: ldc           #15                 // String DES
+      12: invokestatic  #17                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+      15: astore_2
+      16: aload_2
+      17: bipush        56
+      19: invokevirtual #23                 // Method javax/crypto/KeyGenerator.init:(I)V
+      22: aload_2
+      23: invokevirtual #27                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+      26: astore_3
+      27: aload_3
+      28: invokeinterface #31,  1           // InterfaceMethod javax/crypto/SecretKey.getEncoded:()[B
+      33: astore        4
+      35: new           #37                 // class javax/crypto/spec/SecretKeySpec
+      38: dup
+      39: aload         4
+      41: ldc           #15                 // String DES
+      43: invokespecial #39                 // Method javax/crypto/spec/SecretKeySpec."<init>":([BLjava/lang/String;)V
+      46: astore        5
+      48: ldc           #15                 // String DES
+      50: invokestatic  #42                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+      53: astore        6
+      55: aload         6
+      57: iconst_1
+      58: aload         5
+      60: invokevirtual #47                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;)V
+      63: aload         6
+      65: ldc           #13                 // String ABCDEFG123456
+      67: ldc           #50                 // String UTF-8
+      69: invokevirtual #52                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      72: invokevirtual #58                 // Method javax/crypto/Cipher.doFinal:([B)[B
+      75: astore        7
+      77: aload         7
+      79: invokestatic  #62                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      82: invokestatic  #68                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      85: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #72                 // Method privateReturnsFalse:()Z
+       4: ifeq          15
+       7: ldc           #75                 // String Benign, fixed string
+       9: invokestatic  #68                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      12: goto          94
+      15: ldc           #13                 // String ABCDEFG123456
+      17: astore_1
+      18: ldc           #77                 // String AES
+      20: invokestatic  #17                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+      23: astore_2
+      24: aload_2
+      25: sipush        128
+      28: invokevirtual #23                 // Method javax/crypto/KeyGenerator.init:(I)V
+      31: aload_2
+      32: invokevirtual #27                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+      35: astore_3
+      36: aload_3
+      37: invokeinterface #31,  1           // InterfaceMethod javax/crypto/SecretKey.getEncoded:()[B
+      42: astore        4
+      44: new           #37                 // class javax/crypto/spec/SecretKeySpec
+      47: dup
+      48: aload         4
+      50: ldc           #77                 // String AES
+      52: invokespecial #39                 // Method javax/crypto/spec/SecretKeySpec."<init>":([BLjava/lang/String;)V
+      55: astore        5
+      57: ldc           #77                 // String AES
+      59: invokestatic  #42                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+      62: astore        6
+      64: aload         6
+      66: iconst_1
+      67: aload         5
+      69: invokevirtual #47                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;)V
+      72: aload         6
+      74: ldc           #13                 // String ABCDEFG123456
+      76: ldc           #50                 // String UTF-8
+      78: invokevirtual #52                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      81: invokevirtual #58                 // Method javax/crypto/Cipher.doFinal:([B)[B
+      84: astore        7
+      86: aload         7
+      88: invokestatic  #62                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      91: invokestatic  #68                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      94: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          86
+       7: ldc           #13                 // String ABCDEFG123456
+       9: astore_1
+      10: ldc           #77                 // String AES
+      12: invokestatic  #17                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+      15: astore_2
+      16: aload_2
+      17: sipush        128
+      20: invokevirtual #23                 // Method javax/crypto/KeyGenerator.init:(I)V
+      23: aload_2
+      24: invokevirtual #27                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+      27: astore_3
+      28: aload_3
+      29: invokeinterface #31,  1           // InterfaceMethod javax/crypto/SecretKey.getEncoded:()[B
+      34: astore        4
+      36: new           #37                 // class javax/crypto/spec/SecretKeySpec
+      39: dup
+      40: aload         4
+      42: ldc           #77                 // String AES
+      44: invokespecial #39                 // Method javax/crypto/spec/SecretKeySpec."<init>":([BLjava/lang/String;)V
+      47: astore        5
+      49: ldc           #77                 // String AES
+      51: invokestatic  #42                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+      54: astore        6
+      56: aload         6
+      58: iconst_1
+      59: aload         5
+      61: invokevirtual #47                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;)V
+      64: aload         6
+      66: ldc           #13                 // String ABCDEFG123456
+      68: ldc           #50                 // String UTF-8
+      70: invokevirtual #52                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      73: invokevirtual #58                 // Method javax/crypto/Cipher.doFinal:([B)[B
+      76: astore        7
+      78: aload         7
+      80: invokestatic  #62                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      83: invokestatic  #68                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      86: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #79                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #82                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #85                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

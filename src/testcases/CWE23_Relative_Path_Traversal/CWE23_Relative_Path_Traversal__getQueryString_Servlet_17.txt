@@ -1,0 +1,423 @@
+Compiled from "CWE23_Relative_Path_Traversal__getQueryString_Servlet_17.java"
+public class testcases.CWE23_Relative_Path_Traversal.CWE23_Relative_Path_Traversal__getQueryString_Servlet_17 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE23_Relative_Path_Traversal.CWE23_Relative_Path_Traversal__getQueryString_Servlet_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #7                  // String
+       2: astore_3
+       3: new           #9                  // class java/util/StringTokenizer
+       6: dup
+       7: aload_1
+       8: invokeinterface #11,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getQueryString:()Ljava/lang/String;
+      13: ldc           #17                 // String &
+      15: invokespecial #19                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: astore        4
+      20: aload         4
+      22: invokevirtual #22                 // Method java/util/StringTokenizer.hasMoreTokens:()Z
+      25: ifeq          58
+      28: aload         4
+      30: invokevirtual #26                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      33: astore        5
+      35: aload         5
+      37: ldc           #29                 // String id=
+      39: invokevirtual #31                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      42: ifeq          55
+      45: aload         5
+      47: iconst_3
+      48: invokevirtual #37                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      51: astore_3
+      52: goto          58
+      55: goto          20
+      58: iconst_0
+      59: istore        4
+      61: iload         4
+      63: iconst_1
+      64: if_icmpge     467
+      67: ldc           #41                 // String os.name
+      69: invokestatic  #43                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      72: invokevirtual #49                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      75: ldc           #52                 // String win
+      77: invokevirtual #54                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      80: iflt          90
+      83: ldc           #58                 // String C:\\uploads\\
+      85: astore        5
+      87: goto          94
+      90: ldc           #60                 // String /home/user/uploads/
+      92: astore        5
+      94: aload_3
+      95: ifnull        461
+      98: new           #62                 // class java/io/File
+     101: dup
+     102: aload         5
+     104: aload_3
+     105: invokedynamic #64,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     110: invokespecial #68                 // Method java/io/File."<init>":(Ljava/lang/String;)V
+     113: astore        6
+     115: aconst_null
+     116: astore        7
+     118: aconst_null
+     119: astore        8
+     121: aconst_null
+     122: astore        9
+     124: aload         6
+     126: invokevirtual #71                 // Method java/io/File.exists:()Z
+     129: ifeq          461
+     132: aload         6
+     134: invokevirtual #74                 // Method java/io/File.isFile:()Z
+     137: ifeq          461
+     140: new           #77                 // class java/io/FileInputStream
+     143: dup
+     144: aload         6
+     146: invokespecial #79                 // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+     149: astore        7
+     151: new           #82                 // class java/io/InputStreamReader
+     154: dup
+     155: aload         7
+     157: ldc           #84                 // String UTF-8
+     159: invokespecial #86                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+     162: astore        8
+     164: new           #89                 // class java/io/BufferedReader
+     167: dup
+     168: aload         8
+     170: invokespecial #91                 // Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+     173: astore        9
+     175: aload         9
+     177: invokevirtual #94                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+     180: invokestatic  #97                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     183: aload         9
+     185: ifnull        193
+     188: aload         9
+     190: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     193: goto          211
+     196: astore        10
+     198: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     201: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     204: ldc           #117                // String Error closing BufferedReader
+     206: aload         10
+     208: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     211: aload         8
+     213: ifnull        221
+     216: aload         8
+     218: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     221: goto          239
+     224: astore        10
+     226: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     229: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     232: ldc           #126                // String Error closing InputStreamReader
+     234: aload         10
+     236: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     239: aload         7
+     241: ifnull        249
+     244: aload         7
+     246: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     249: goto          461
+     252: astore        10
+     254: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     257: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     260: ldc           #129                // String Error closing FileInputStream
+     262: aload         10
+     264: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     267: goto          461
+     270: astore        10
+     272: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     275: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     278: ldc           #131                // String Error with stream reading
+     280: aload         10
+     282: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     285: aload         9
+     287: ifnull        295
+     290: aload         9
+     292: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     295: goto          313
+     298: astore        10
+     300: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     303: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     306: ldc           #117                // String Error closing BufferedReader
+     308: aload         10
+     310: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     313: aload         8
+     315: ifnull        323
+     318: aload         8
+     320: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     323: goto          341
+     326: astore        10
+     328: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     331: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     334: ldc           #126                // String Error closing InputStreamReader
+     336: aload         10
+     338: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     341: aload         7
+     343: ifnull        351
+     346: aload         7
+     348: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     351: goto          461
+     354: astore        10
+     356: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     359: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     362: ldc           #129                // String Error closing FileInputStream
+     364: aload         10
+     366: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     369: goto          461
+     372: astore        11
+     374: aload         9
+     376: ifnull        384
+     379: aload         9
+     381: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     384: goto          402
+     387: astore        12
+     389: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     392: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     395: ldc           #117                // String Error closing BufferedReader
+     397: aload         12
+     399: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     402: aload         8
+     404: ifnull        412
+     407: aload         8
+     409: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     412: goto          430
+     415: astore        12
+     417: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     420: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     423: ldc           #126                // String Error closing InputStreamReader
+     425: aload         12
+     427: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     430: aload         7
+     432: ifnull        440
+     435: aload         7
+     437: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     440: goto          458
+     443: astore        12
+     445: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     448: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     451: ldc           #129                // String Error closing FileInputStream
+     453: aload         12
+     455: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     458: aload         11
+     460: athrow
+     461: iinc          4, 1
+     464: goto          61
+     467: return
+    Exception table:
+       from    to  target type
+         183   193   196   Class java/io/IOException
+         211   221   224   Class java/io/IOException
+         239   249   252   Class java/io/IOException
+         140   183   270   Class java/io/IOException
+         285   295   298   Class java/io/IOException
+         313   323   326   Class java/io/IOException
+         341   351   354   Class java/io/IOException
+         140   183   372   any
+         270   285   372   any
+         374   384   387   Class java/io/IOException
+         402   412   415   Class java/io/IOException
+         430   440   443   Class java/io/IOException
+         372   374   372   any
+
+  private void goodG2B(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #133                // String foo
+       2: astore_3
+       3: iconst_0
+       4: istore        4
+       6: iload         4
+       8: iconst_1
+       9: if_icmpge     412
+      12: ldc           #41                 // String os.name
+      14: invokestatic  #43                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      17: invokevirtual #49                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      20: ldc           #52                 // String win
+      22: invokevirtual #54                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      25: iflt          35
+      28: ldc           #58                 // String C:\\uploads\\
+      30: astore        5
+      32: goto          39
+      35: ldc           #60                 // String /home/user/uploads/
+      37: astore        5
+      39: aload_3
+      40: ifnull        406
+      43: new           #62                 // class java/io/File
+      46: dup
+      47: aload         5
+      49: aload_3
+      50: invokedynamic #64,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      55: invokespecial #68                 // Method java/io/File."<init>":(Ljava/lang/String;)V
+      58: astore        6
+      60: aconst_null
+      61: astore        7
+      63: aconst_null
+      64: astore        8
+      66: aconst_null
+      67: astore        9
+      69: aload         6
+      71: invokevirtual #71                 // Method java/io/File.exists:()Z
+      74: ifeq          406
+      77: aload         6
+      79: invokevirtual #74                 // Method java/io/File.isFile:()Z
+      82: ifeq          406
+      85: new           #77                 // class java/io/FileInputStream
+      88: dup
+      89: aload         6
+      91: invokespecial #79                 // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+      94: astore        7
+      96: new           #82                 // class java/io/InputStreamReader
+      99: dup
+     100: aload         7
+     102: ldc           #84                 // String UTF-8
+     104: invokespecial #86                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+     107: astore        8
+     109: new           #89                 // class java/io/BufferedReader
+     112: dup
+     113: aload         8
+     115: invokespecial #91                 // Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+     118: astore        9
+     120: aload         9
+     122: invokevirtual #94                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+     125: invokestatic  #97                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     128: aload         9
+     130: ifnull        138
+     133: aload         9
+     135: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     138: goto          156
+     141: astore        10
+     143: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     146: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     149: ldc           #117                // String Error closing BufferedReader
+     151: aload         10
+     153: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     156: aload         8
+     158: ifnull        166
+     161: aload         8
+     163: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     166: goto          184
+     169: astore        10
+     171: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     174: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     177: ldc           #126                // String Error closing InputStreamReader
+     179: aload         10
+     181: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     184: aload         7
+     186: ifnull        194
+     189: aload         7
+     191: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     194: goto          406
+     197: astore        10
+     199: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     202: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     205: ldc           #129                // String Error closing FileInputStream
+     207: aload         10
+     209: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     212: goto          406
+     215: astore        10
+     217: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     220: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     223: ldc           #131                // String Error with stream reading
+     225: aload         10
+     227: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     230: aload         9
+     232: ifnull        240
+     235: aload         9
+     237: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     240: goto          258
+     243: astore        10
+     245: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     248: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     251: ldc           #117                // String Error closing BufferedReader
+     253: aload         10
+     255: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     258: aload         8
+     260: ifnull        268
+     263: aload         8
+     265: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     268: goto          286
+     271: astore        10
+     273: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     276: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     279: ldc           #126                // String Error closing InputStreamReader
+     281: aload         10
+     283: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     286: aload         7
+     288: ifnull        296
+     291: aload         7
+     293: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     296: goto          406
+     299: astore        10
+     301: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     304: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     307: ldc           #129                // String Error closing FileInputStream
+     309: aload         10
+     311: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     314: goto          406
+     317: astore        11
+     319: aload         9
+     321: ifnull        329
+     324: aload         9
+     326: invokevirtual #102                // Method java/io/BufferedReader.close:()V
+     329: goto          347
+     332: astore        12
+     334: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     337: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     340: ldc           #117                // String Error closing BufferedReader
+     342: aload         12
+     344: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     347: aload         8
+     349: ifnull        357
+     352: aload         8
+     354: invokevirtual #125                // Method java/io/InputStreamReader.close:()V
+     357: goto          375
+     360: astore        12
+     362: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     365: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     368: ldc           #126                // String Error closing InputStreamReader
+     370: aload         12
+     372: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     375: aload         7
+     377: ifnull        385
+     380: aload         7
+     382: invokevirtual #128                // Method java/io/FileInputStream.close:()V
+     385: goto          403
+     388: astore        12
+     390: getstatic     #107                // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     393: getstatic     #111                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     396: ldc           #129                // String Error closing FileInputStream
+     398: aload         12
+     400: invokevirtual #119                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     403: aload         11
+     405: athrow
+     406: iinc          4, 1
+     409: goto          6
+     412: return
+    Exception table:
+       from    to  target type
+         128   138   141   Class java/io/IOException
+         156   166   169   Class java/io/IOException
+         184   194   197   Class java/io/IOException
+          85   128   215   Class java/io/IOException
+         230   240   243   Class java/io/IOException
+         258   268   271   Class java/io/IOException
+         286   296   299   Class java/io/IOException
+          85   128   317   any
+         215   230   317   any
+         319   329   332   Class java/io/IOException
+         347   357   360   Class java/io/IOException
+         375   385   388   Class java/io/IOException
+         317   319   317   any
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #135                // Method goodG2B:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #141                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

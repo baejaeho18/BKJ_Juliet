@@ -1,0 +1,173 @@
+Compiled from "CWE315_Plaintext_Storage_in_Cookie__Servlet_42.java"
+public class testcases.CWE315_Plaintext_Storage_in_Cookie.CWE315_Plaintext_Storage_in_Cookie__Servlet_42 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE315_Plaintext_Storage_in_Cookie.CWE315_Plaintext_Storage_in_Cookie__Servlet_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  private java.lang.String badSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/net/PasswordAuthentication
+       3: dup
+       4: ldc           #9                  // String user
+       6: ldc           #11                 // String BP@ssw0rd
+       8: invokevirtual #13                 // Method java/lang/String.toCharArray:()[C
+      11: invokespecial #19                 // Method java/net/PasswordAuthentication."<init>":(Ljava/lang/String;[C)V
+      14: astore        4
+      16: aload         4
+      18: invokevirtual #22                 // Method java/net/PasswordAuthentication.getUserName:()Ljava/lang/String;
+      21: new           #14                 // class java/lang/String
+      24: dup
+      25: aload         4
+      27: invokevirtual #26                 // Method java/net/PasswordAuthentication.getPassword:()[C
+      30: invokespecial #29                 // Method java/lang/String."<init>":([C)V
+      33: invokedynamic #32,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      38: astore_3
+      39: aload_3
+      40: areturn
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #36                 // Method badSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aload_2
+       8: new           #42                 // class javax/servlet/http/Cookie
+      11: dup
+      12: ldc           #44                 // String auth
+      14: aload_3
+      15: invokespecial #46                 // Method javax/servlet/http/Cookie."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: invokeinterface #49,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.addCookie:(Ljavax/servlet/http/Cookie;)V
+      23: return
+
+  private java.lang.String goodG2BSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/net/PasswordAuthentication
+       3: dup
+       4: ldc           #9                  // String user
+       6: ldc           #55                 // String GP@ssw0rd
+       8: invokevirtual #13                 // Method java/lang/String.toCharArray:()[C
+      11: invokespecial #19                 // Method java/net/PasswordAuthentication."<init>":(Ljava/lang/String;[C)V
+      14: astore        4
+      16: ldc           #57                 // String ThisIsMySalt
+      18: astore        5
+      20: ldc           #59                 // String SHA-512
+      22: invokestatic  #61                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+      25: astore        6
+      27: aload         6
+      29: invokevirtual #67                 // Method java/security/MessageDigest.reset:()V
+      32: aload         4
+      34: invokevirtual #22                 // Method java/net/PasswordAuthentication.getUserName:()Ljava/lang/String;
+      37: new           #14                 // class java/lang/String
+      40: dup
+      41: aload         4
+      43: invokevirtual #26                 // Method java/net/PasswordAuthentication.getPassword:()[C
+      46: invokespecial #29                 // Method java/lang/String."<init>":([C)V
+      49: invokedynamic #32,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      54: astore        7
+      56: aload         6
+      58: aload         5
+      60: aload         7
+      62: invokedynamic #70,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      67: ldc           #71                 // String UTF-8
+      69: invokevirtual #73                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      72: invokevirtual #77                 // Method java/security/MessageDigest.digest:([B)[B
+      75: astore        8
+      77: aload         8
+      79: invokestatic  #81                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      82: astore_3
+      83: aload_3
+      84: areturn
+
+  private void goodG2B(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #87                 // Method goodG2BSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aload_2
+       8: new           #42                 // class javax/servlet/http/Cookie
+      11: dup
+      12: ldc           #44                 // String auth
+      14: aload_3
+      15: invokespecial #46                 // Method javax/servlet/http/Cookie."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: invokeinterface #49,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.addCookie:(Ljavax/servlet/http/Cookie;)V
+      23: return
+
+  private java.lang.String goodB2GSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/net/PasswordAuthentication
+       3: dup
+       4: ldc           #9                  // String user
+       6: ldc           #11                 // String BP@ssw0rd
+       8: invokevirtual #13                 // Method java/lang/String.toCharArray:()[C
+      11: invokespecial #19                 // Method java/net/PasswordAuthentication."<init>":(Ljava/lang/String;[C)V
+      14: astore        4
+      16: aload         4
+      18: invokevirtual #22                 // Method java/net/PasswordAuthentication.getUserName:()Ljava/lang/String;
+      21: new           #14                 // class java/lang/String
+      24: dup
+      25: aload         4
+      27: invokevirtual #26                 // Method java/net/PasswordAuthentication.getPassword:()[C
+      30: invokespecial #29                 // Method java/lang/String."<init>":([C)V
+      33: invokedynamic #32,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      38: astore_3
+      39: aload_3
+      40: areturn
+
+  private void goodB2G(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #90                 // Method goodB2GSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: ldc           #57                 // String ThisIsMySalt
+       9: astore        4
+      11: ldc           #59                 // String SHA-512
+      13: invokestatic  #61                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+      16: astore        5
+      18: aload         5
+      20: invokevirtual #67                 // Method java/security/MessageDigest.reset:()V
+      23: aload         5
+      25: aload         4
+      27: aload_3
+      28: invokedynamic #70,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      33: ldc           #71                 // String UTF-8
+      35: invokevirtual #73                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      38: invokevirtual #77                 // Method java/security/MessageDigest.digest:([B)[B
+      41: astore        6
+      43: aload         6
+      45: invokestatic  #81                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      48: astore_3
+      49: aload_2
+      50: new           #42                 // class javax/servlet/http/Cookie
+      53: dup
+      54: ldc           #44                 // String auth
+      56: aload_3
+      57: invokespecial #46                 // Method javax/servlet/http/Cookie."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      60: invokeinterface #49,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.addCookie:(Ljavax/servlet/http/Cookie;)V
+      65: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #93                 // Method goodG2B:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #97                 // Method goodB2G:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #100                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

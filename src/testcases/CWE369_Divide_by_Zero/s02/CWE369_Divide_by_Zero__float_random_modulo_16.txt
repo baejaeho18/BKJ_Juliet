@@ -1,0 +1,87 @@
+Compiled from "CWE369_Divide_by_Zero__float_random_modulo_16.java"
+public class testcases.CWE369_Divide_by_Zero.s02.CWE369_Divide_by_Zero__float_random_modulo_16 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE369_Divide_by_Zero.s02.CWE369_Divide_by_Zero__float_random_modulo_16();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: astore_2
+       8: aload_2
+       9: invokevirtual #10                 // Method java/security/SecureRandom.nextFloat:()F
+      12: fstore_1
+      13: goto          16
+      16: ldc2_w        #14                 // double 100.0d
+      19: fload_1
+      20: f2d
+      21: drem
+      22: d2i
+      23: istore_2
+      24: iload_2
+      25: invokestatic  #16                 // Method testcasesupport/IO.writeLine:(I)V
+      28: goto          31
+      31: return
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: fconst_2
+       1: fstore_1
+       2: ldc2_w        #14                 // double 100.0d
+       5: fload_1
+       6: f2d
+       7: drem
+       8: d2i
+       9: istore_2
+      10: iload_2
+      11: invokestatic  #16                 // Method testcasesupport/IO.writeLine:(I)V
+      14: goto          17
+      17: return
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: astore_2
+       8: aload_2
+       9: invokevirtual #10                 // Method java/security/SecureRandom.nextFloat:()F
+      12: fstore_1
+      13: goto          16
+      16: fload_1
+      17: invokestatic  #22                 // Method java/lang/Math.abs:(F)F
+      20: f2d
+      21: ldc2_w        #28                 // double 1.0E-6d
+      24: dcmpl
+      25: ifle          43
+      28: ldc2_w        #14                 // double 100.0d
+      31: fload_1
+      32: f2d
+      33: drem
+      34: d2i
+      35: istore_2
+      36: iload_2
+      37: invokestatic  #16                 // Method testcasesupport/IO.writeLine:(I)V
+      40: goto          48
+      43: ldc           #30                 // String This would result in a modulo by zero
+      45: invokestatic  #32                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      48: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #35                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #40                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #43                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

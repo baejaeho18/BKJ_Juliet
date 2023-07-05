@@ -1,0 +1,240 @@
+Compiled from "CWE329_Not_Using_Random_IV_with_CBC_Mode__basic_07.java"
+public class testcases.CWE329_Not_Using_Random_IV_with_CBC_Mode.CWE329_Not_Using_Random_IV_with_CBC_Mode__basic_07 extends testcasesupport.AbstractTestCase {
+  private int privateFive;
+
+  public testcases.CWE329_Not_Using_Random_IV_with_CBC_Mode.CWE329_Not_Using_Random_IV_with_CBC_Mode__basic_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     153
+       8: ldc           #13                 // String asdf
+      10: ldc           #15                 // String UTF-8
+      12: invokevirtual #17                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      15: astore_1
+      16: bipush        16
+      18: newarray       byte
+      20: dup
+      21: iconst_0
+      22: iconst_0
+      23: bastore
+      24: dup
+      25: iconst_1
+      26: iconst_0
+      27: bastore
+      28: dup
+      29: iconst_2
+      30: iconst_0
+      31: bastore
+      32: dup
+      33: iconst_3
+      34: iconst_0
+      35: bastore
+      36: dup
+      37: iconst_4
+      38: iconst_0
+      39: bastore
+      40: dup
+      41: iconst_5
+      42: iconst_0
+      43: bastore
+      44: dup
+      45: bipush        6
+      47: iconst_0
+      48: bastore
+      49: dup
+      50: bipush        7
+      52: iconst_0
+      53: bastore
+      54: dup
+      55: bipush        8
+      57: iconst_0
+      58: bastore
+      59: dup
+      60: bipush        9
+      62: iconst_0
+      63: bastore
+      64: dup
+      65: bipush        10
+      67: iconst_0
+      68: bastore
+      69: dup
+      70: bipush        11
+      72: iconst_0
+      73: bastore
+      74: dup
+      75: bipush        12
+      77: iconst_0
+      78: bastore
+      79: dup
+      80: bipush        13
+      82: iconst_0
+      83: bastore
+      84: dup
+      85: bipush        14
+      87: iconst_0
+      88: bastore
+      89: dup
+      90: bipush        15
+      92: iconst_0
+      93: bastore
+      94: astore_2
+      95: ldc           #23                 // String AES
+      97: invokestatic  #25                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+     100: astore_3
+     101: aload_3
+     102: sipush        128
+     105: invokevirtual #31                 // Method javax/crypto/KeyGenerator.init:(I)V
+     108: aload_3
+     109: invokevirtual #35                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+     112: astore        4
+     114: ldc           #39                 // String AES/CBC/PKCS5Padding
+     116: invokestatic  #41                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+     119: astore        5
+     121: new           #46                 // class javax/crypto/spec/IvParameterSpec
+     124: dup
+     125: aload_2
+     126: invokespecial #48                 // Method javax/crypto/spec/IvParameterSpec."<init>":([B)V
+     129: astore        6
+     131: aload         5
+     133: iconst_1
+     134: aload         4
+     136: aload         6
+     138: invokevirtual #51                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;Ljava/security/spec/AlgorithmParameterSpec;)V
+     141: aload         5
+     143: aload_1
+     144: invokevirtual #54                 // Method javax/crypto/Cipher.doFinal:([B)[B
+     147: invokestatic  #58                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+     150: invokestatic  #64                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     153: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     16
+       8: ldc           #68                 // String Benign, fixed string
+      10: invokestatic  #64                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      13: goto          110
+      16: ldc           #13                 // String asdf
+      18: ldc           #15                 // String UTF-8
+      20: invokevirtual #17                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      23: astore_1
+      24: ldc           #23                 // String AES
+      26: invokestatic  #25                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+      29: astore_2
+      30: aload_2
+      31: sipush        128
+      34: invokevirtual #31                 // Method javax/crypto/KeyGenerator.init:(I)V
+      37: aload_2
+      38: invokevirtual #35                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+      41: astore_3
+      42: ldc           #39                 // String AES/CBC/PKCS5Padding
+      44: invokestatic  #41                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+      47: astore        4
+      49: aload         4
+      51: invokevirtual #70                 // Method javax/crypto/Cipher.getBlockSize:()I
+      54: istore        5
+      56: iload         5
+      58: newarray       byte
+      60: astore        6
+      62: new           #74                 // class java/security/SecureRandom
+      65: dup
+      66: invokespecial #76                 // Method java/security/SecureRandom."<init>":()V
+      69: astore        7
+      71: aload         7
+      73: aload         6
+      75: invokevirtual #77                 // Method java/security/SecureRandom.nextBytes:([B)V
+      78: new           #46                 // class javax/crypto/spec/IvParameterSpec
+      81: dup
+      82: aload         6
+      84: invokespecial #48                 // Method javax/crypto/spec/IvParameterSpec."<init>":([B)V
+      87: astore        8
+      89: aload         4
+      91: iconst_1
+      92: aload_3
+      93: aload         8
+      95: invokevirtual #51                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;Ljava/security/spec/AlgorithmParameterSpec;)V
+      98: aload         4
+     100: aload_1
+     101: invokevirtual #54                 // Method javax/crypto/Cipher.doFinal:([B)[B
+     104: invokestatic  #58                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+     107: invokestatic  #64                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     110: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     102
+       8: ldc           #13                 // String asdf
+      10: ldc           #15                 // String UTF-8
+      12: invokevirtual #17                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      15: astore_1
+      16: ldc           #23                 // String AES
+      18: invokestatic  #25                 // Method javax/crypto/KeyGenerator.getInstance:(Ljava/lang/String;)Ljavax/crypto/KeyGenerator;
+      21: astore_2
+      22: aload_2
+      23: sipush        128
+      26: invokevirtual #31                 // Method javax/crypto/KeyGenerator.init:(I)V
+      29: aload_2
+      30: invokevirtual #35                 // Method javax/crypto/KeyGenerator.generateKey:()Ljavax/crypto/SecretKey;
+      33: astore_3
+      34: ldc           #39                 // String AES/CBC/PKCS5Padding
+      36: invokestatic  #41                 // Method javax/crypto/Cipher.getInstance:(Ljava/lang/String;)Ljavax/crypto/Cipher;
+      39: astore        4
+      41: aload         4
+      43: invokevirtual #70                 // Method javax/crypto/Cipher.getBlockSize:()I
+      46: istore        5
+      48: iload         5
+      50: newarray       byte
+      52: astore        6
+      54: new           #74                 // class java/security/SecureRandom
+      57: dup
+      58: invokespecial #76                 // Method java/security/SecureRandom."<init>":()V
+      61: astore        7
+      63: aload         7
+      65: aload         6
+      67: invokevirtual #77                 // Method java/security/SecureRandom.nextBytes:([B)V
+      70: new           #46                 // class javax/crypto/spec/IvParameterSpec
+      73: dup
+      74: aload         6
+      76: invokespecial #48                 // Method javax/crypto/spec/IvParameterSpec."<init>":([B)V
+      79: astore        8
+      81: aload         4
+      83: iconst_1
+      84: aload_3
+      85: aload         8
+      87: invokevirtual #51                 // Method javax/crypto/Cipher.init:(ILjava/security/Key;Ljava/security/spec/AlgorithmParameterSpec;)V
+      90: aload         4
+      92: aload_1
+      93: invokevirtual #54                 // Method javax/crypto/Cipher.doFinal:([B)[B
+      96: invokestatic  #58                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      99: invokestatic  #64                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     102: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #80                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #83                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #86                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

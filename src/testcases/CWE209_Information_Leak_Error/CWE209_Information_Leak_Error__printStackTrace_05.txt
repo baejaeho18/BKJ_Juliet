@@ -1,0 +1,86 @@
+Compiled from "CWE209_Information_Leak_Error__printStackTrace_05.java"
+public class testcases.CWE209_Information_Leak_Error.CWE209_Information_Leak_Error__printStackTrace_05 extends testcasesupport.AbstractTestCase {
+  private boolean privateTrue;
+
+  private boolean privateFalse;
+
+  public testcases.CWE209_Information_Leak_Error.CWE209_Information_Leak_Error__printStackTrace_05();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #7                  // Field privateTrue:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #13                 // Field privateFalse:Z
+      14: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          20
+       7: new           #16                 // class java/lang/UnsupportedOperationException
+      10: dup
+      11: invokespecial #18                 // Method java/lang/UnsupportedOperationException."<init>":()V
+      14: athrow
+      15: astore_1
+      16: aload_1
+      17: invokevirtual #19                 // Method java/lang/UnsupportedOperationException.printStackTrace:()V
+      20: return
+    Exception table:
+       from    to  target type
+           7    15    15   Class java/lang/UnsupportedOperationException
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field privateFalse:Z
+       4: ifeq          15
+       7: ldc           #22                 // String Benign, fixed string
+       9: invokestatic  #24                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      12: goto          29
+      15: new           #16                 // class java/lang/UnsupportedOperationException
+      18: dup
+      19: invokespecial #18                 // Method java/lang/UnsupportedOperationException."<init>":()V
+      22: athrow
+      23: astore_1
+      24: ldc           #30                 // String There was an unsupported operation error
+      26: invokestatic  #24                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      29: return
+    Exception table:
+       from    to  target type
+          15    23    23   Class java/lang/UnsupportedOperationException
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          21
+       7: new           #16                 // class java/lang/UnsupportedOperationException
+      10: dup
+      11: invokespecial #18                 // Method java/lang/UnsupportedOperationException."<init>":()V
+      14: athrow
+      15: astore_1
+      16: ldc           #30                 // String There was an unsupported operation error
+      18: invokestatic  #24                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      21: return
+    Exception table:
+       from    to  target type
+           7    15    15   Class java/lang/UnsupportedOperationException
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #32                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #35                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #38                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
