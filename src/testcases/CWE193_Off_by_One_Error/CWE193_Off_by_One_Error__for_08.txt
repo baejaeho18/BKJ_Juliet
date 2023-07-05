@@ -1,0 +1,113 @@
+Compiled from "CWE193_Off_by_One_Error__for_08.java"
+public class testcases.CWE193_Off_by_One_Error.CWE193_Off_by_One_Error__for_08 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE193_Off_by_One_Error.CWE193_Off_by_One_Error__for_08();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  private boolean privateReturnsTrue();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  private boolean privateReturnsFalse();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          40
+       7: bipush        10
+       9: newarray       int
+      11: astore_1
+      12: iconst_0
+      13: istore_2
+      14: iload_2
+      15: aload_1
+      16: arraylength
+      17: if_icmpgt     40
+      20: iload_2
+      21: aload_1
+      22: iload_2
+      23: iload_2
+      24: dup_x2
+      25: iastore
+      26: invokedynamic #13,  0             // InvokeDynamic #0:makeConcatWithConstants:(II)Ljava/lang/String;
+      31: invokestatic  #17                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: iinc          2, 1
+      37: goto          14
+      40: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #23                 // Method privateReturnsFalse:()Z
+       4: ifeq          15
+       7: ldc           #26                 // String Benign, fixed string
+       9: invokestatic  #17                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      12: goto          48
+      15: bipush        10
+      17: newarray       int
+      19: astore_1
+      20: iconst_0
+      21: istore_2
+      22: iload_2
+      23: aload_1
+      24: arraylength
+      25: if_icmpge     48
+      28: iload_2
+      29: aload_1
+      30: iload_2
+      31: iload_2
+      32: dup_x2
+      33: iastore
+      34: invokedynamic #13,  0             // InvokeDynamic #0:makeConcatWithConstants:(II)Ljava/lang/String;
+      39: invokestatic  #17                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      42: iinc          2, 1
+      45: goto          22
+      48: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          40
+       7: bipush        10
+       9: newarray       int
+      11: astore_1
+      12: iconst_0
+      13: istore_2
+      14: iload_2
+      15: aload_1
+      16: arraylength
+      17: if_icmpge     40
+      20: iload_2
+      21: aload_1
+      22: iload_2
+      23: iload_2
+      24: dup_x2
+      25: iastore
+      26: invokedynamic #13,  0             // InvokeDynamic #0:makeConcatWithConstants:(II)Ljava/lang/String;
+      31: invokestatic  #17                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: iinc          2, 1
+      37: goto          14
+      40: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #31                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #34                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

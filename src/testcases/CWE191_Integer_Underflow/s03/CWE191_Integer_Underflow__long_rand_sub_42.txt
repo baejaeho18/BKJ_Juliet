@@ -1,0 +1,98 @@
+Compiled from "CWE191_Integer_Underflow__long_rand_sub_42.java"
+public class testcases.CWE191_Integer_Underflow.s03.CWE191_Integer_Underflow__long_rand_sub_42 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE191_Integer_Underflow.s03.CWE191_Integer_Underflow__long_rand_sub_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  private long badSource() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: lload_1
+      12: lreturn
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method badSource:()J
+       4: lstore_1
+       5: lload_1
+       6: lconst_1
+       7: lsub
+       8: lstore_3
+       9: lload_3
+      10: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      15: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      18: return
+
+  private long goodG2BSource() throws java.lang.Throwable;
+    Code:
+       0: ldc2_w        #29                 // long 2l
+       3: lstore_1
+       4: lload_1
+       5: lreturn
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method goodG2BSource:()J
+       4: lstore_1
+       5: lload_1
+       6: lconst_1
+       7: lsub
+       8: lstore_3
+       9: lload_3
+      10: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      15: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      18: return
+
+  private long goodB2GSource() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextLong:()J
+      10: lstore_1
+      11: lload_1
+      12: lreturn
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #34                 // Method goodB2GSource:()J
+       4: lstore_1
+       5: lload_1
+       6: ldc2_w        #39                 // long -9223372036854775808l
+       9: lcmp
+      10: ifle          29
+      13: lload_1
+      14: lconst_1
+      15: lsub
+      16: lstore_3
+      17: lload_3
+      18: invokedynamic #19,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      23: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      26: goto          34
+      29: ldc           #41                 // String data value is too small to perform subtraction.
+      31: invokestatic  #23                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #43                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #46                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #49                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
