@@ -1,0 +1,61 @@
+Compiled from "CWE382_Use_of_System_Exit__Servlet_Runtime_14.java"
+public class testcases.CWE382_Use_of_System_Exit.CWE382_Use_of_System_Exit__Servlet_Runtime_14 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE382_Use_of_System_Exit.CWE382_Use_of_System_Exit__Servlet_Runtime_14();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #7                  // Field testcasesupport/IO.staticFive:I
+       3: iconst_5
+       4: if_icmpne     14
+       7: invokestatic  #13                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      10: iconst_1
+      11: invokevirtual #19                 // Method java/lang/Runtime.exit:(I)V
+      14: return
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #7                  // Field testcasesupport/IO.staticFive:I
+       3: iconst_5
+       4: if_icmpeq     15
+       7: ldc           #23                 // String Benign, fixed string
+       9: invokestatic  #25                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      12: goto          26
+      15: aload_2
+      16: invokeinterface #29,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      21: ldc           #35                 // String You cannot shut down this application, only the admin can
+      23: invokevirtual #37                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      26: return
+
+  private void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: getstatic     #7                  // Field testcasesupport/IO.staticFive:I
+       3: iconst_5
+       4: if_icmpne     18
+       7: aload_2
+       8: invokeinterface #29,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      13: ldc           #35                 // String You cannot shut down this application, only the admin can
+      15: invokevirtual #37                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      18: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #42                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #48                 // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #51                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

@@ -1,0 +1,148 @@
+Compiled from "CWE400_Resource_Exhaustion__sleep_random_05.java"
+public class testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_random_05 extends testcasesupport.AbstractTestCase {
+  private boolean privateTrue;
+
+  private boolean privateFalse;
+
+  public testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_random_05();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #7                  // Field privateTrue:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #13                 // Field privateFalse:Z
+      14: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          21
+       7: new           #16                 // class java/security/SecureRandom
+      10: dup
+      11: invokespecial #18                 // Method java/security/SecureRandom."<init>":()V
+      14: invokevirtual #19                 // Method java/security/SecureRandom.nextInt:()I
+      17: istore_1
+      18: goto          23
+      21: iconst_0
+      22: istore_1
+      23: aload_0
+      24: getfield      #7                  // Field privateTrue:Z
+      27: ifeq          35
+      30: iload_1
+      31: i2l
+      32: invokestatic  #23                 // Method java/lang/Thread.sleep:(J)V
+      35: return
+
+  private void goodG2B1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field privateFalse:Z
+       4: ifeq          12
+       7: iconst_0
+       8: istore_1
+       9: goto          14
+      12: iconst_2
+      13: istore_1
+      14: aload_0
+      15: getfield      #7                  // Field privateTrue:Z
+      18: ifeq          26
+      21: iload_1
+      22: i2l
+      23: invokestatic  #23                 // Method java/lang/Thread.sleep:(J)V
+      26: return
+
+  private void goodG2B2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          12
+       7: iconst_2
+       8: istore_1
+       9: goto          14
+      12: iconst_0
+      13: istore_1
+      14: aload_0
+      15: getfield      #7                  // Field privateTrue:Z
+      18: ifeq          26
+      21: iload_1
+      22: i2l
+      23: invokestatic  #23                 // Method java/lang/Thread.sleep:(J)V
+      26: return
+
+  private void goodB2G1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          21
+       7: new           #16                 // class java/security/SecureRandom
+      10: dup
+      11: invokespecial #18                 // Method java/security/SecureRandom."<init>":()V
+      14: invokevirtual #19                 // Method java/security/SecureRandom.nextInt:()I
+      17: istore_1
+      18: goto          23
+      21: iconst_0
+      22: istore_1
+      23: aload_0
+      24: getfield      #13                 // Field privateFalse:Z
+      27: ifeq          38
+      30: ldc           #29                 // String Benign, fixed string
+      32: invokestatic  #31                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      35: goto          54
+      38: iload_1
+      39: ifle          54
+      42: iload_1
+      43: sipush        2000
+      46: if_icmpgt     54
+      49: iload_1
+      50: i2l
+      51: invokestatic  #23                 // Method java/lang/Thread.sleep:(J)V
+      54: return
+
+  private void goodB2G2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          21
+       7: new           #16                 // class java/security/SecureRandom
+      10: dup
+      11: invokespecial #18                 // Method java/security/SecureRandom."<init>":()V
+      14: invokevirtual #19                 // Method java/security/SecureRandom.nextInt:()I
+      17: istore_1
+      18: goto          23
+      21: iconst_0
+      22: istore_1
+      23: aload_0
+      24: getfield      #7                  // Field privateTrue:Z
+      27: ifeq          46
+      30: iload_1
+      31: ifle          46
+      34: iload_1
+      35: sipush        2000
+      38: if_icmpgt     46
+      41: iload_1
+      42: i2l
+      43: invokestatic  #23                 // Method java/lang/Thread.sleep:(J)V
+      46: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #37                 // Method goodG2B1:()V
+       4: aload_0
+       5: invokevirtual #40                 // Method goodG2B2:()V
+       8: aload_0
+       9: invokevirtual #43                 // Method goodB2G1:()V
+      12: aload_0
+      13: invokevirtual #46                 // Method goodB2G2:()V
+      16: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #49                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

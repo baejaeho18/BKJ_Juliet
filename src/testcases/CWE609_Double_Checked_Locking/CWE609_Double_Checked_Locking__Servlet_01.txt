@@ -1,0 +1,256 @@
+Compiled from "CWE609_Double_Checked_Locking__Servlet_01.java"
+public class testcases.CWE609_Double_Checked_Locking.CWE609_Double_Checked_Locking__Servlet_01 extends testcasesupport.AbstractTestCaseServlet {
+  private static final long serialVersionUID;
+
+  private static java.lang.String stringBad;
+
+  private static volatile java.lang.String stringGood1;
+
+  private static java.lang.String stringGood2;
+
+  private static java.lang.String stringGood3;
+
+  private static java.lang.String stringGood4;
+
+  private static final java.lang.Object stringGood4Lock;
+
+  private static java.lang.String stringGood5;
+
+  private static final java.util.concurrent.locks.ReentrantLock good5ReentrantLock;
+
+  public testcases.CWE609_Double_Checked_Locking.CWE609_Double_Checked_Locking__Servlet_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public static java.lang.String helperBad();
+    Code:
+       0: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+       3: ifnonnull     32
+       6: ldc           #8                  // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Servlet_01
+       8: dup
+       9: astore_0
+      10: monitorenter
+      11: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+      14: ifnonnull     22
+      17: ldc           #13                 // String stringBad
+      19: putstatic     #7                  // Field stringBad:Ljava/lang/String;
+      22: aload_0
+      23: monitorexit
+      24: goto          32
+      27: astore_1
+      28: aload_0
+      29: monitorexit
+      30: aload_1
+      31: athrow
+      32: getstatic     #7                  // Field stringBad:Ljava/lang/String;
+      35: areturn
+    Exception table:
+       from    to  target type
+          11    24    27   any
+          27    30    27   any
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #20                 // Method helperBad:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public static java.lang.String helperGood1();
+    Code:
+       0: getstatic     #30                 // Field stringGood1:Ljava/lang/String;
+       3: ifnonnull     32
+       6: ldc           #8                  // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Servlet_01
+       8: dup
+       9: astore_0
+      10: monitorenter
+      11: getstatic     #30                 // Field stringGood1:Ljava/lang/String;
+      14: ifnonnull     22
+      17: ldc           #33                 // String stringGood1
+      19: putstatic     #30                 // Field stringGood1:Ljava/lang/String;
+      22: aload_0
+      23: monitorexit
+      24: goto          32
+      27: astore_1
+      28: aload_0
+      29: monitorexit
+      30: aload_1
+      31: athrow
+      32: getstatic     #30                 // Field stringGood1:Ljava/lang/String;
+      35: areturn
+    Exception table:
+       from    to  target type
+          11    24    27   any
+          27    30    27   any
+
+  public void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #34                 // Method helperGood1:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public static synchronized java.lang.String helperGood2();
+    Code:
+       0: getstatic     #37                 // Field stringGood2:Ljava/lang/String;
+       3: ifnonnull     11
+       6: ldc           #40                 // String stringGood2
+       8: putstatic     #37                 // Field stringGood2:Ljava/lang/String;
+      11: getstatic     #37                 // Field stringGood2:Ljava/lang/String;
+      14: areturn
+
+  public void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #41                 // Method helperGood2:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public static java.lang.String helperGood3();
+    Code:
+       0: ldc           #44                 // class testcases/CWE609_Double_Checked_Locking/CWE609_Double_Checked_Locking__Thread_01
+       2: dup
+       3: astore_0
+       4: monitorenter
+       5: getstatic     #46                 // Field stringGood3:Ljava/lang/String;
+       8: ifnonnull     16
+      11: ldc           #49                 // String stringGood3
+      13: putstatic     #46                 // Field stringGood3:Ljava/lang/String;
+      16: getstatic     #46                 // Field stringGood3:Ljava/lang/String;
+      19: aload_0
+      20: monitorexit
+      21: areturn
+      22: astore_1
+      23: aload_0
+      24: monitorexit
+      25: aload_1
+      26: athrow
+    Exception table:
+       from    to  target type
+           5    21    22   any
+          22    25    22   any
+
+  public void good3(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #50                 // Method helperGood3:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public static java.lang.String helperGood4();
+    Code:
+       0: getstatic     #53                 // Field stringGood4Lock:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: getstatic     #57                 // Field stringGood4:Ljava/lang/String;
+       9: ifnonnull     17
+      12: ldc           #60                 // String stringGood4
+      14: putstatic     #57                 // Field stringGood4:Ljava/lang/String;
+      17: getstatic     #57                 // Field stringGood4:Ljava/lang/String;
+      20: aload_0
+      21: monitorexit
+      22: areturn
+      23: astore_1
+      24: aload_0
+      25: monitorexit
+      26: aload_1
+      27: athrow
+    Exception table:
+       from    to  target type
+           6    22    23   any
+          23    26    23   any
+
+  public void good4(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #61                 // Method helperGood4:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public static java.lang.String helperGood5();
+    Code:
+       0: getstatic     #64                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+       3: invokevirtual #68                 // Method java/util/concurrent/locks/ReentrantLock.lock:()V
+       6: getstatic     #73                 // Field stringGood5:Ljava/lang/String;
+       9: ifnonnull     17
+      12: ldc           #76                 // String stringGood5
+      14: putstatic     #73                 // Field stringGood5:Ljava/lang/String;
+      17: getstatic     #73                 // Field stringGood5:Ljava/lang/String;
+      20: astore_0
+      21: getstatic     #64                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      24: invokevirtual #77                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      27: aload_0
+      28: areturn
+      29: astore_1
+      30: getstatic     #64                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      33: invokevirtual #77                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      36: aload_1
+      37: athrow
+    Exception table:
+       from    to  target type
+           6    21    29   any
+
+  public void good5(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_2
+       1: invokeinterface #14,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       6: invokestatic  #80                 // Method helperGood5:()Ljava/lang/String;
+       9: invokevirtual #24                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      12: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #83                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #87                 // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: invokevirtual #90                 // Method good3:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokevirtual #93                 // Method good4:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokevirtual #96                 // Method good5:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      30: return
+
+  static {};
+    Code:
+       0: aconst_null
+       1: putstatic     #7                  // Field stringBad:Ljava/lang/String;
+       4: aconst_null
+       5: putstatic     #30                 // Field stringGood1:Ljava/lang/String;
+       8: aconst_null
+       9: putstatic     #37                 // Field stringGood2:Ljava/lang/String;
+      12: aconst_null
+      13: putstatic     #46                 // Field stringGood3:Ljava/lang/String;
+      16: aconst_null
+      17: putstatic     #57                 // Field stringGood4:Ljava/lang/String;
+      20: new           #99                 // class java/lang/Object
+      23: dup
+      24: invokespecial #101                // Method java/lang/Object."<init>":()V
+      27: putstatic     #53                 // Field stringGood4Lock:Ljava/lang/Object;
+      30: aconst_null
+      31: putstatic     #73                 // Field stringGood5:Ljava/lang/String;
+      34: new           #69                 // class java/util/concurrent/locks/ReentrantLock
+      37: dup
+      38: invokespecial #102                // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+      41: putstatic     #64                 // Field good5ReentrantLock:Ljava/util/concurrent/locks/ReentrantLock;
+      44: return
+}

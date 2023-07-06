@@ -1,0 +1,197 @@
+Compiled from "CWE535_Info_Exposure_Shell_Error__Servlet_09.java"
+public class testcases.CWE535_Info_Exposure_Shell_Error.CWE535_Info_Exposure_Shell_Error__Servlet_09 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE535_Info_Exposure_Shell_Error.CWE535_Info_Exposure_Shell_Error__Servlet_09();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String username
+       3: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+       8: ifnonnull     12
+      11: return
+      12: aload_1
+      13: ldc           #9                  // String username
+      15: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      20: astore_3
+      21: aconst_null
+      22: astore        4
+      24: aconst_null
+      25: astore        5
+      27: aload_3
+      28: ldc           #17                 // String [a-zA-Z0-9]*
+      30: invokevirtual #19                 // Method java/lang/String.matches:(Ljava/lang/String;)Z
+      33: ifeq          91
+      36: aload_1
+      37: iconst_1
+      38: invokeinterface #25,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getSession:(Z)Ljavax/servlet/http/HttpSession;
+      43: astore        6
+      45: new           #29                 // class java/io/OutputStreamWriter
+      48: dup
+      49: getstatic     #31                 // Field java/lang/System.err:Ljava/io/PrintStream;
+      52: ldc           #37                 // String UTF-8
+      54: invokespecial #39                 // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+      57: astore        4
+      59: new           #42                 // class java/io/PrintWriter
+      62: dup
+      63: aload         4
+      65: invokespecial #44                 // Method java/io/PrintWriter."<init>":(Ljava/io/Writer;)V
+      68: astore        5
+      70: aload         5
+      72: aload_3
+      73: aload         6
+      75: invokeinterface #47,  1           // InterfaceMethod javax/servlet/http/HttpSession.getId:()Ljava/lang/String;
+      80: invokedynamic #53,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      85: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      88: goto          102
+      91: aload_2
+      92: invokeinterface #61,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      97: ldc           #67                 // String Invalid characters
+      99: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+     102: aload         4
+     104: ifnull        112
+     107: aload         4
+     109: invokevirtual #69                 // Method java/io/OutputStreamWriter.close:()V
+     112: goto          130
+     115: astore        6
+     117: getstatic     #74                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     120: getstatic     #78                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     123: ldc           #84                 // String Error closing OutputStreamWriter
+     125: aload         6
+     127: invokevirtual #86                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     130: return
+    Exception table:
+       from    to  target type
+         102   112   115   Class java/io/IOException
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String username
+       3: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+       8: ifnonnull     12
+      11: return
+      12: aload_1
+      13: ldc           #9                  // String username
+      15: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      20: astore_3
+      21: aconst_null
+      22: astore        4
+      24: aconst_null
+      25: astore        5
+      27: aload_3
+      28: ldc           #17                 // String [a-zA-Z0-9]*
+      30: invokevirtual #19                 // Method java/lang/String.matches:(Ljava/lang/String;)Z
+      33: ifeq          75
+      36: new           #29                 // class java/io/OutputStreamWriter
+      39: dup
+      40: getstatic     #31                 // Field java/lang/System.err:Ljava/io/PrintStream;
+      43: ldc           #37                 // String UTF-8
+      45: invokespecial #39                 // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+      48: astore        4
+      50: new           #42                 // class java/io/PrintWriter
+      53: dup
+      54: aload         4
+      56: invokespecial #44                 // Method java/io/PrintWriter."<init>":(Ljava/io/Writer;)V
+      59: astore        5
+      61: aload         5
+      63: aload_3
+      64: invokedynamic #92,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      69: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      72: goto          86
+      75: aload_2
+      76: invokeinterface #61,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      81: ldc           #67                 // String Invalid characters
+      83: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      86: aload         4
+      88: ifnull        96
+      91: aload         4
+      93: invokevirtual #69                 // Method java/io/OutputStreamWriter.close:()V
+      96: goto          114
+      99: astore        6
+     101: getstatic     #74                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     104: getstatic     #78                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     107: ldc           #84                 // String Error closing OutputStreamWriter
+     109: aload         6
+     111: invokevirtual #86                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     114: return
+    Exception table:
+       from    to  target type
+          86    96    99   Class java/io/IOException
+
+  private void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String username
+       3: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+       8: ifnonnull     12
+      11: return
+      12: aload_1
+      13: ldc           #9                  // String username
+      15: invokeinterface #11,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      20: astore_3
+      21: aconst_null
+      22: astore        4
+      24: aconst_null
+      25: astore        5
+      27: aload_3
+      28: ldc           #17                 // String [a-zA-Z0-9]*
+      30: invokevirtual #19                 // Method java/lang/String.matches:(Ljava/lang/String;)Z
+      33: ifeq          75
+      36: new           #29                 // class java/io/OutputStreamWriter
+      39: dup
+      40: getstatic     #31                 // Field java/lang/System.err:Ljava/io/PrintStream;
+      43: ldc           #37                 // String UTF-8
+      45: invokespecial #39                 // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+      48: astore        4
+      50: new           #42                 // class java/io/PrintWriter
+      53: dup
+      54: aload         4
+      56: invokespecial #44                 // Method java/io/PrintWriter."<init>":(Ljava/io/Writer;)V
+      59: astore        5
+      61: aload         5
+      63: aload_3
+      64: invokedynamic #92,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      69: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      72: goto          86
+      75: aload_2
+      76: invokeinterface #61,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      81: ldc           #67                 // String Invalid characters
+      83: invokevirtual #57                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      86: aload         4
+      88: ifnull        96
+      91: aload         4
+      93: invokevirtual #69                 // Method java/io/OutputStreamWriter.close:()V
+      96: goto          114
+      99: astore        6
+     101: getstatic     #74                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     104: getstatic     #78                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     107: ldc           #84                 // String Error closing OutputStreamWriter
+     109: aload         6
+     111: invokevirtual #86                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     114: return
+    Exception table:
+       from    to  target type
+          86    96    99   Class java/io/IOException
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #94                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #100                // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #103                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

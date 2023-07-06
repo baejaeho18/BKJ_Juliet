@@ -1,0 +1,155 @@
+Compiled from "CWE78_OS_Command_Injection__getQueryString_Servlet_05.java"
+public class testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__getQueryString_Servlet_05 extends testcasesupport.AbstractTestCaseServlet {
+  private boolean privateTrue;
+
+  private boolean privateFalse;
+
+  public testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__getQueryString_Servlet_05();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #7                  // Field privateTrue:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #13                 // Field privateFalse:Z
+      14: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          68
+       7: ldc           #16                 // String
+       9: astore_3
+      10: new           #18                 // class java/util/StringTokenizer
+      13: dup
+      14: aload_1
+      15: invokeinterface #20,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getQueryString:()Ljava/lang/String;
+      20: ldc           #26                 // String &
+      22: invokespecial #28                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      25: astore        4
+      27: aload         4
+      29: invokevirtual #31                 // Method java/util/StringTokenizer.hasMoreTokens:()Z
+      32: ifeq          65
+      35: aload         4
+      37: invokevirtual #35                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      40: astore        5
+      42: aload         5
+      44: ldc           #38                 // String id=
+      46: invokevirtual #40                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      49: ifeq          62
+      52: aload         5
+      54: iconst_3
+      55: invokevirtual #46                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      58: astore_3
+      59: goto          65
+      62: goto          27
+      65: goto          70
+      68: aconst_null
+      69: astore_3
+      70: ldc           #50                 // String os.name
+      72: invokestatic  #52                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      75: invokevirtual #58                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      78: ldc           #61                 // String win
+      80: invokevirtual #63                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      83: iflt          93
+      86: ldc           #67                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      88: astore        4
+      90: goto          97
+      93: ldc           #69                 // String /bin/ls
+      95: astore        4
+      97: invokestatic  #71                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+     100: aload         4
+     102: aload_3
+     103: invokedynamic #77,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     108: invokevirtual #81                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+     111: astore        5
+     113: aload         5
+     115: invokevirtual #85                 // Method java/lang/Process.waitFor:()I
+     118: pop
+     119: return
+
+  private void goodG2B1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field privateFalse:Z
+       4: ifeq          12
+       7: aconst_null
+       8: astore_3
+       9: goto          15
+      12: ldc           #91                 // String foo
+      14: astore_3
+      15: ldc           #50                 // String os.name
+      17: invokestatic  #52                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      20: invokevirtual #58                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      23: ldc           #61                 // String win
+      25: invokevirtual #63                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      28: iflt          38
+      31: ldc           #67                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      33: astore        4
+      35: goto          42
+      38: ldc           #69                 // String /bin/ls
+      40: astore        4
+      42: invokestatic  #71                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      45: aload         4
+      47: aload_3
+      48: invokedynamic #77,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      53: invokevirtual #81                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      56: astore        5
+      58: aload         5
+      60: invokevirtual #85                 // Method java/lang/Process.waitFor:()I
+      63: pop
+      64: return
+
+  private void goodG2B2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          13
+       7: ldc           #91                 // String foo
+       9: astore_3
+      10: goto          15
+      13: aconst_null
+      14: astore_3
+      15: ldc           #50                 // String os.name
+      17: invokestatic  #52                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      20: invokevirtual #58                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      23: ldc           #61                 // String win
+      25: invokevirtual #63                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      28: iflt          38
+      31: ldc           #67                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      33: astore        4
+      35: goto          42
+      38: ldc           #69                 // String /bin/ls
+      40: astore        4
+      42: invokestatic  #71                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      45: aload         4
+      47: aload_3
+      48: invokedynamic #77,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      53: invokevirtual #81                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      56: astore        5
+      58: aload         5
+      60: invokevirtual #85                 // Method java/lang/Process.waitFor:()I
+      63: pop
+      64: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #93                 // Method goodG2B1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #97                 // Method goodG2B2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #100                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

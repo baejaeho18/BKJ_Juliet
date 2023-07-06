@@ -1,0 +1,139 @@
+Compiled from "CWE400_Resource_Exhaustion__sleep_max_value_05.java"
+public class testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_max_value_05 extends testcasesupport.AbstractTestCase {
+  private boolean privateTrue;
+
+  private boolean privateFalse;
+
+  public testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_max_value_05();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #7                  // Field privateTrue:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #13                 // Field privateFalse:Z
+      14: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          13
+       7: ldc           #18                 // int 2147483647
+       9: istore_1
+      10: goto          15
+      13: iconst_0
+      14: istore_1
+      15: aload_0
+      16: getfield      #7                  // Field privateTrue:Z
+      19: ifeq          27
+      22: iload_1
+      23: i2l
+      24: invokestatic  #19                 // Method java/lang/Thread.sleep:(J)V
+      27: return
+
+  private void goodG2B1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field privateFalse:Z
+       4: ifeq          12
+       7: iconst_0
+       8: istore_1
+       9: goto          14
+      12: iconst_2
+      13: istore_1
+      14: aload_0
+      15: getfield      #7                  // Field privateTrue:Z
+      18: ifeq          26
+      21: iload_1
+      22: i2l
+      23: invokestatic  #19                 // Method java/lang/Thread.sleep:(J)V
+      26: return
+
+  private void goodG2B2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          12
+       7: iconst_2
+       8: istore_1
+       9: goto          14
+      12: iconst_0
+      13: istore_1
+      14: aload_0
+      15: getfield      #7                  // Field privateTrue:Z
+      18: ifeq          26
+      21: iload_1
+      22: i2l
+      23: invokestatic  #19                 // Method java/lang/Thread.sleep:(J)V
+      26: return
+
+  private void goodB2G1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          13
+       7: ldc           #18                 // int 2147483647
+       9: istore_1
+      10: goto          15
+      13: iconst_0
+      14: istore_1
+      15: aload_0
+      16: getfield      #13                 // Field privateFalse:Z
+      19: ifeq          30
+      22: ldc           #25                 // String Benign, fixed string
+      24: invokestatic  #27                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      27: goto          46
+      30: iload_1
+      31: ifle          46
+      34: iload_1
+      35: sipush        2000
+      38: if_icmpgt     46
+      41: iload_1
+      42: i2l
+      43: invokestatic  #19                 // Method java/lang/Thread.sleep:(J)V
+      46: return
+
+  private void goodB2G2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          13
+       7: ldc           #18                 // int 2147483647
+       9: istore_1
+      10: goto          15
+      13: iconst_0
+      14: istore_1
+      15: aload_0
+      16: getfield      #7                  // Field privateTrue:Z
+      19: ifeq          38
+      22: iload_1
+      23: ifle          38
+      26: iload_1
+      27: sipush        2000
+      30: if_icmpgt     38
+      33: iload_1
+      34: i2l
+      35: invokestatic  #19                 // Method java/lang/Thread.sleep:(J)V
+      38: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #33                 // Method goodG2B1:()V
+       4: aload_0
+       5: invokevirtual #36                 // Method goodG2B2:()V
+       8: aload_0
+       9: invokevirtual #39                 // Method goodB2G1:()V
+      12: aload_0
+      13: invokevirtual #42                 // Method goodB2G2:()V
+      16: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #45                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

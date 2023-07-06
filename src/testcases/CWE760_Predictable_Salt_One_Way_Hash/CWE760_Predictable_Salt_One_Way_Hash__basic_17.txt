@@ -1,0 +1,89 @@
+Compiled from "CWE760_Predictable_Salt_One_Way_Hash__basic_17.java"
+public class testcases.CWE760_Predictable_Salt_One_Way_Hash.CWE760_Predictable_Salt_One_Way_Hash__basic_17 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE760_Predictable_Salt_One_Way_Hash.CWE760_Predictable_Salt_One_Way_Hash__basic_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iload_1
+       3: iconst_1
+       4: if_icmpge     64
+       7: new           #7                  // class java/util/Random
+      10: dup
+      11: invokespecial #9                  // Method java/util/Random."<init>":()V
+      14: astore_2
+      15: ldc           #10                 // String SHA-512
+      17: invokestatic  #12                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+      20: astore_3
+      21: aload_3
+      22: aload_2
+      23: invokevirtual #18                 // Method java/util/Random.nextInt:()I
+      26: invokestatic  #22                 // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+      29: ldc           #28                 // String UTF-8
+      31: invokevirtual #30                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      34: invokevirtual #36                 // Method java/security/MessageDigest.update:([B)V
+      37: aload_3
+      38: ldc           #40                 // String hash me
+      40: ldc           #28                 // String UTF-8
+      42: invokevirtual #30                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      45: invokevirtual #42                 // Method java/security/MessageDigest.digest:([B)[B
+      48: astore        4
+      50: aload         4
+      52: invokestatic  #46                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      55: invokestatic  #52                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      58: iinc          1, 1
+      61: goto          2
+      64: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iload_1
+       3: iconst_1
+       4: if_icmpge     66
+       7: new           #56                 // class java/security/SecureRandom
+      10: dup
+      11: invokespecial #58                 // Method java/security/SecureRandom."<init>":()V
+      14: astore_2
+      15: ldc           #10                 // String SHA-512
+      17: invokestatic  #12                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+      20: astore_3
+      21: ldc           #59                 // String SHA1PRNG
+      23: invokestatic  #61                 // Method java/security/SecureRandom.getInstance:(Ljava/lang/String;)Ljava/security/SecureRandom;
+      26: astore        4
+      28: aload_3
+      29: aload         4
+      31: bipush        32
+      33: invokevirtual #64                 // Method java/security/SecureRandom.generateSeed:(I)[B
+      36: invokevirtual #36                 // Method java/security/MessageDigest.update:([B)V
+      39: aload_3
+      40: ldc           #40                 // String hash me
+      42: ldc           #28                 // String UTF-8
+      44: invokevirtual #30                 // Method java/lang/String.getBytes:(Ljava/lang/String;)[B
+      47: invokevirtual #42                 // Method java/security/MessageDigest.digest:([B)[B
+      50: astore        5
+      52: aload         5
+      54: invokestatic  #46                 // Method testcasesupport/IO.toHex:([B)Ljava/lang/String;
+      57: invokestatic  #52                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      60: iinc          1, 1
+      63: goto          2
+      66: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #68                 // Method good1:()V
+       4: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #73                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

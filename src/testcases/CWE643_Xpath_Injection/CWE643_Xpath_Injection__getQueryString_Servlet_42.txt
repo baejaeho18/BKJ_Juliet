@@ -1,0 +1,275 @@
+Compiled from "CWE643_Xpath_Injection__getQueryString_Servlet_42.java"
+public class testcases.CWE643_Xpath_Injection.CWE643_Xpath_Injection__getQueryString_Servlet_42 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE643_Xpath_Injection.CWE643_Xpath_Injection__getQueryString_Servlet_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  private java.lang.String badSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #7                  // String
+       2: astore_3
+       3: new           #9                  // class java/util/StringTokenizer
+       6: dup
+       7: aload_1
+       8: invokeinterface #11,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getQueryString:()Ljava/lang/String;
+      13: ldc           #17                 // String &
+      15: invokespecial #19                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: astore        4
+      20: aload         4
+      22: invokevirtual #22                 // Method java/util/StringTokenizer.hasMoreTokens:()Z
+      25: ifeq          58
+      28: aload         4
+      30: invokevirtual #26                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      33: astore        5
+      35: aload         5
+      37: ldc           #29                 // String id=
+      39: invokevirtual #31                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      42: ifeq          55
+      45: aload         5
+      47: iconst_3
+      48: invokevirtual #37                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      51: astore_3
+      52: goto          58
+      55: goto          20
+      58: aload_3
+      59: areturn
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #41                 // Method badSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aconst_null
+       8: astore        4
+      10: ldc           #47                 // String os.name
+      12: invokestatic  #49                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      15: invokevirtual #55                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      18: ldc           #58                 // String win
+      20: invokevirtual #60                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      23: iflt          33
+      26: ldc           #64                 // String \\src\\testcases\\CWE643_Xpath Injection\\CWE643_Xpath_Injection__Helper.xml
+      28: astore        4
+      30: goto          37
+      33: ldc           #66                 // String ./src/testcases/CWE643_Xpath Injection/CWE643_Xpath_Injection__Helper.xml
+      35: astore        4
+      37: aload_3
+      38: ifnull        118
+      41: aload_3
+      42: ldc           #68                 // String ||
+      44: invokevirtual #70                 // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+      47: astore        5
+      49: aload         5
+      51: arraylength
+      52: iconst_2
+      53: if_icmpge     57
+      56: return
+      57: aload         5
+      59: iconst_0
+      60: aaload
+      61: astore        6
+      63: aload         5
+      65: iconst_1
+      66: aaload
+      67: astore        7
+      69: invokestatic  #74                 // Method javax/xml/xpath/XPathFactory.newInstance:()Ljavax/xml/xpath/XPathFactory;
+      72: invokevirtual #80                 // Method javax/xml/xpath/XPathFactory.newXPath:()Ljavax/xml/xpath/XPath;
+      75: astore        8
+      77: new           #84                 // class org/xml/sax/InputSource
+      80: dup
+      81: aload         4
+      83: invokespecial #86                 // Method org/xml/sax/InputSource."<init>":(Ljava/lang/String;)V
+      86: astore        9
+      88: aload         6
+      90: aload         7
+      92: invokedynamic #89,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      97: astore        10
+      99: aload         8
+     101: aload         10
+     103: aload         9
+     105: getstatic     #93                 // Field javax/xml/xpath/XPathConstants.STRING:Ljavax/xml/namespace/QName;
+     108: invokeinterface #99,  4           // InterfaceMethod javax/xml/xpath/XPath.evaluate:(Ljava/lang/String;Lorg/xml/sax/InputSource;Ljavax/xml/namespace/QName;)Ljava/lang/Object;
+     113: checkcast     #32                 // class java/lang/String
+     116: astore        11
+     118: return
+
+  private java.lang.String goodG2BSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #105                // String foo
+       2: astore_3
+       3: aload_3
+       4: areturn
+
+  private void goodG2B(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #107                // Method goodG2BSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aconst_null
+       8: astore        4
+      10: ldc           #47                 // String os.name
+      12: invokestatic  #49                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      15: invokevirtual #55                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      18: ldc           #58                 // String win
+      20: invokevirtual #60                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      23: iflt          33
+      26: ldc           #64                 // String \\src\\testcases\\CWE643_Xpath Injection\\CWE643_Xpath_Injection__Helper.xml
+      28: astore        4
+      30: goto          37
+      33: ldc           #66                 // String ./src/testcases/CWE643_Xpath Injection/CWE643_Xpath_Injection__Helper.xml
+      35: astore        4
+      37: aload_3
+      38: ifnull        118
+      41: aload_3
+      42: ldc           #68                 // String ||
+      44: invokevirtual #70                 // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+      47: astore        5
+      49: aload         5
+      51: arraylength
+      52: iconst_2
+      53: if_icmpge     57
+      56: return
+      57: aload         5
+      59: iconst_0
+      60: aaload
+      61: astore        6
+      63: aload         5
+      65: iconst_1
+      66: aaload
+      67: astore        7
+      69: invokestatic  #74                 // Method javax/xml/xpath/XPathFactory.newInstance:()Ljavax/xml/xpath/XPathFactory;
+      72: invokevirtual #80                 // Method javax/xml/xpath/XPathFactory.newXPath:()Ljavax/xml/xpath/XPath;
+      75: astore        8
+      77: new           #84                 // class org/xml/sax/InputSource
+      80: dup
+      81: aload         4
+      83: invokespecial #86                 // Method org/xml/sax/InputSource."<init>":(Ljava/lang/String;)V
+      86: astore        9
+      88: aload         6
+      90: aload         7
+      92: invokedynamic #89,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      97: astore        10
+      99: aload         8
+     101: aload         10
+     103: aload         9
+     105: getstatic     #93                 // Field javax/xml/xpath/XPathConstants.STRING:Ljavax/xml/namespace/QName;
+     108: invokeinterface #99,  4           // InterfaceMethod javax/xml/xpath/XPath.evaluate:(Ljava/lang/String;Lorg/xml/sax/InputSource;Ljavax/xml/namespace/QName;)Ljava/lang/Object;
+     113: checkcast     #32                 // class java/lang/String
+     116: astore        11
+     118: return
+
+  private java.lang.String goodB2GSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #7                  // String
+       2: astore_3
+       3: new           #9                  // class java/util/StringTokenizer
+       6: dup
+       7: aload_1
+       8: invokeinterface #11,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getQueryString:()Ljava/lang/String;
+      13: ldc           #17                 // String &
+      15: invokespecial #19                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: astore        4
+      20: aload         4
+      22: invokevirtual #22                 // Method java/util/StringTokenizer.hasMoreTokens:()Z
+      25: ifeq          58
+      28: aload         4
+      30: invokevirtual #26                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      33: astore        5
+      35: aload         5
+      37: ldc           #29                 // String id=
+      39: invokevirtual #31                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      42: ifeq          55
+      45: aload         5
+      47: iconst_3
+      48: invokevirtual #37                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      51: astore_3
+      52: goto          58
+      55: goto          20
+      58: aload_3
+      59: areturn
+
+  private void goodB2G(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #110                // Method goodB2GSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aconst_null
+       8: astore        4
+      10: ldc           #47                 // String os.name
+      12: invokestatic  #49                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      15: invokevirtual #55                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      18: ldc           #58                 // String win
+      20: invokevirtual #60                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      23: iflt          33
+      26: ldc           #64                 // String \\src\\testcases\\CWE643_Xpath Injection\\CWE643_Xpath_Injection__Helper.xml
+      28: astore        4
+      30: goto          37
+      33: ldc           #66                 // String ./src/testcases/CWE643_Xpath Injection/CWE643_Xpath_Injection__Helper.xml
+      35: astore        4
+      37: aload_3
+      38: ifnull        124
+      41: aload_3
+      42: ldc           #68                 // String ||
+      44: invokevirtual #70                 // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+      47: astore        5
+      49: aload         5
+      51: arraylength
+      52: iconst_2
+      53: if_icmpge     57
+      56: return
+      57: aload         5
+      59: iconst_0
+      60: aaload
+      61: invokestatic  #113                // Method org/apache/commons/lang/StringEscapeUtils.escapeXml:(Ljava/lang/String;)Ljava/lang/String;
+      64: astore        6
+      66: aload         5
+      68: iconst_1
+      69: aaload
+      70: invokestatic  #113                // Method org/apache/commons/lang/StringEscapeUtils.escapeXml:(Ljava/lang/String;)Ljava/lang/String;
+      73: astore        7
+      75: invokestatic  #74                 // Method javax/xml/xpath/XPathFactory.newInstance:()Ljavax/xml/xpath/XPathFactory;
+      78: invokevirtual #80                 // Method javax/xml/xpath/XPathFactory.newXPath:()Ljavax/xml/xpath/XPath;
+      81: astore        8
+      83: new           #84                 // class org/xml/sax/InputSource
+      86: dup
+      87: aload         4
+      89: invokespecial #86                 // Method org/xml/sax/InputSource."<init>":(Ljava/lang/String;)V
+      92: astore        9
+      94: aload         6
+      96: aload         7
+      98: invokedynamic #89,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     103: astore        10
+     105: aload         8
+     107: aload         10
+     109: aload         9
+     111: getstatic     #93                 // Field javax/xml/xpath/XPathConstants.STRING:Ljavax/xml/namespace/QName;
+     114: invokeinterface #99,  4           // InterfaceMethod javax/xml/xpath/XPath.evaluate:(Ljava/lang/String;Lorg/xml/sax/InputSource;Ljavax/xml/namespace/QName;)Ljava/lang/Object;
+     119: checkcast     #32                 // class java/lang/String
+     122: astore        11
+     124: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #118                // Method goodG2B:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #122                // Method goodB2G:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #125                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

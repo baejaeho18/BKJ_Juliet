@@ -1,0 +1,118 @@
+Compiled from "CWE789_Uncontrolled_Mem_Alloc__heap_07.java"
+public class testcases.CWE789_Uncontrolled_Mem_Alloc.s02.CWE789_Uncontrolled_Mem_Alloc__heap_07 extends testcasesupport.AbstractTestCase {
+  private int privateFive;
+
+  public testcases.CWE789_Uncontrolled_Mem_Alloc.s02.CWE789_Uncontrolled_Mem_Alloc__heap_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     44
+       8: new           #13                 // class java/util/ArrayList
+      11: dup
+      12: invokespecial #15                 // Method java/util/ArrayList."<init>":()V
+      15: astore_1
+      16: ldc           #16                 // int 10485760
+      18: newarray       byte
+      20: astore_2
+      21: aload_1
+      22: aload_2
+      23: invokevirtual #17                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      26: pop
+      27: invokestatic  #21                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      30: invokevirtual #27                 // Method java/lang/Runtime.freeMemory:()J
+      33: invokedynamic #31,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      38: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      41: goto          16
+      44: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     16
+       8: ldc           #41                 // String Benign, fixed string
+      10: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      13: goto          73
+      16: new           #13                 // class java/util/ArrayList
+      19: dup
+      20: invokespecial #15                 // Method java/util/ArrayList."<init>":()V
+      23: astore_1
+      24: invokestatic  #21                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      27: invokevirtual #27                 // Method java/lang/Runtime.freeMemory:()J
+      30: ldc2_w        #43                 // long 10485760l
+      33: lcmp
+      34: ifge          45
+      37: ldc           #45                 // String Not enough memory to go again
+      39: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      42: goto          73
+      45: ldc           #16                 // int 10485760
+      47: newarray       byte
+      49: astore_2
+      50: aload_1
+      51: aload_2
+      52: invokevirtual #17                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      55: pop
+      56: invokestatic  #21                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      59: invokevirtual #27                 // Method java/lang/Runtime.freeMemory:()J
+      62: invokedynamic #31,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      67: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      70: goto          24
+      73: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     65
+       8: new           #13                 // class java/util/ArrayList
+      11: dup
+      12: invokespecial #15                 // Method java/util/ArrayList."<init>":()V
+      15: astore_1
+      16: invokestatic  #21                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      19: invokevirtual #27                 // Method java/lang/Runtime.freeMemory:()J
+      22: ldc2_w        #43                 // long 10485760l
+      25: lcmp
+      26: ifge          37
+      29: ldc           #45                 // String Not enough memory to go again
+      31: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: goto          65
+      37: ldc           #16                 // int 10485760
+      39: newarray       byte
+      41: astore_2
+      42: aload_1
+      43: aload_2
+      44: invokevirtual #17                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      47: pop
+      48: invokestatic  #21                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      51: invokevirtual #27                 // Method java/lang/Runtime.freeMemory:()J
+      54: invokedynamic #31,  0             // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+      59: invokestatic  #35                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      62: goto          16
+      65: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #47                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #50                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #53                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

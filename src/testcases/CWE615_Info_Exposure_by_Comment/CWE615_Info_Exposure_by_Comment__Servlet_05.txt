@@ -1,0 +1,72 @@
+Compiled from "CWE615_Info_Exposure_by_Comment__Servlet_05.java"
+public class testcases.CWE615_Info_Exposure_by_Comment.CWE615_Info_Exposure_by_Comment__Servlet_05 extends testcasesupport.AbstractTestCaseServlet {
+  private boolean privateTrue;
+
+  private boolean privateFalse;
+
+  public testcases.CWE615_Info_Exposure_by_Comment.CWE615_Info_Exposure_by_Comment__Servlet_05();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #7                  // Field privateTrue:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #13                 // Field privateFalse:Z
+      14: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          18
+       7: aload_2
+       8: invokeinterface #16,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      13: ldc           #22                 // String <!--DB username = joe, DB password = 123--><form action=\"/test\" method=post><input type=text name=dbusername><input type=test name=dbpassword><input type=submit value=Submit></form>
+      15: invokevirtual #24                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      18: return
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field privateFalse:Z
+       4: ifeq          15
+       7: ldc           #30                 // String Benign, fixed string
+       9: invokestatic  #32                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      12: goto          26
+      15: aload_2
+      16: invokeinterface #16,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      21: ldc           #37                 // String <form action=\"/test\" method=post><input type=text name=dbusername><input type=test name=dbpassword><input type=submit value=Submit></form>
+      23: invokevirtual #24                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      26: return
+
+  private void good2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateTrue:Z
+       4: ifeq          18
+       7: aload_2
+       8: invokeinterface #16,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      13: ldc           #37                 // String <form action=\"/test\" method=post><input type=text name=dbusername><input type=test name=dbpassword><input type=submit value=Submit></form>
+      15: invokevirtual #24                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      18: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #39                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #43                 // Method good2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #46                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

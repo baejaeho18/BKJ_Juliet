@@ -1,0 +1,119 @@
+Compiled from "CWE601_Open_Redirect__Servlet_getQueryString_Servlet_42.java"
+public class testcases.CWE601_Open_Redirect.CWE601_Open_Redirect__Servlet_getQueryString_Servlet_42 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE601_Open_Redirect.CWE601_Open_Redirect__Servlet_getQueryString_Servlet_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  private java.lang.String badSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #7                  // String
+       2: astore_3
+       3: new           #9                  // class java/util/StringTokenizer
+       6: dup
+       7: aload_1
+       8: invokeinterface #11,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getQueryString:()Ljava/lang/String;
+      13: ldc           #17                 // String &
+      15: invokespecial #19                 // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      18: astore        4
+      20: aload         4
+      22: invokevirtual #22                 // Method java/util/StringTokenizer.hasMoreTokens:()Z
+      25: ifeq          58
+      28: aload         4
+      30: invokevirtual #26                 // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+      33: astore        5
+      35: aload         5
+      37: ldc           #29                 // String id=
+      39: invokevirtual #31                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      42: ifeq          55
+      45: aload         5
+      47: iconst_3
+      48: invokevirtual #37                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      51: astore_3
+      52: goto          58
+      55: goto          20
+      58: aload_3
+      59: areturn
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #41                 // Method badSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aload_3
+       8: ifnull        46
+      11: new           #47                 // class java/net/URI
+      14: dup
+      15: aload_3
+      16: invokespecial #49                 // Method java/net/URI."<init>":(Ljava/lang/String;)V
+      19: astore        4
+      21: goto          38
+      24: astore        5
+      26: aload_2
+      27: invokeinterface #54,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      32: ldc           #60                 // String Invalid redirect URL
+      34: invokevirtual #62                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      37: return
+      38: aload_2
+      39: aload_3
+      40: invokeinterface #67,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+      45: return
+      46: return
+    Exception table:
+       from    to  target type
+          11    21    24   Class java/net/URISyntaxException
+
+  private java.lang.String goodG2BSource(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: ldc           #70                 // String foo
+       2: astore_3
+       3: aload_3
+       4: areturn
+
+  private void goodG2B(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #72                 // Method goodG2BSource:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Ljava/lang/String;
+       6: astore_3
+       7: aload_3
+       8: ifnull        46
+      11: new           #47                 // class java/net/URI
+      14: dup
+      15: aload_3
+      16: invokespecial #49                 // Method java/net/URI."<init>":(Ljava/lang/String;)V
+      19: astore        4
+      21: goto          38
+      24: astore        5
+      26: aload_2
+      27: invokeinterface #54,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      32: ldc           #60                 // String Invalid redirect URL
+      34: invokevirtual #62                 // Method java/io/PrintWriter.write:(Ljava/lang/String;)V
+      37: return
+      38: aload_2
+      39: aload_3
+      40: invokeinterface #67,  2           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendRedirect:(Ljava/lang/String;)V
+      45: return
+      46: return
+    Exception table:
+       from    to  target type
+          11    21    24   Class java/net/URISyntaxException
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #75                 // Method goodG2B:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #79                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

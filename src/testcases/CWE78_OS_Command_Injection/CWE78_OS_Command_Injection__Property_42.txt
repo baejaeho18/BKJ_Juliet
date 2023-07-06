@@ -1,0 +1,89 @@
+Compiled from "CWE78_OS_Command_Injection__Property_42.java"
+public class testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__Property_42 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__Property_42();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  private java.lang.String badSource() throws java.lang.Throwable;
+    Code:
+       0: ldc           #7                  // String user.home
+       2: invokestatic  #9                  // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+       5: astore_1
+       6: aload_1
+       7: areturn
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #15                 // Method badSource:()Ljava/lang/String;
+       4: astore_1
+       5: ldc           #21                 // String os.name
+       7: invokestatic  #9                  // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      10: invokevirtual #23                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      13: ldc           #28                 // String win
+      15: invokevirtual #30                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      18: iflt          27
+      21: ldc           #34                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      23: astore_2
+      24: goto          30
+      27: ldc           #36                 // String /bin/ls
+      29: astore_2
+      30: invokestatic  #38                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      33: aload_2
+      34: aload_1
+      35: invokedynamic #44,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      40: invokevirtual #48                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      43: astore_3
+      44: aload_3
+      45: invokevirtual #52                 // Method java/lang/Process.waitFor:()I
+      48: pop
+      49: return
+
+  private java.lang.String goodG2BSource() throws java.lang.Throwable;
+    Code:
+       0: ldc           #58                 // String foo
+       2: astore_1
+       3: aload_1
+       4: areturn
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #60                 // Method goodG2BSource:()Ljava/lang/String;
+       4: astore_1
+       5: ldc           #21                 // String os.name
+       7: invokestatic  #9                  // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      10: invokevirtual #23                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      13: ldc           #28                 // String win
+      15: invokevirtual #30                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      18: iflt          27
+      21: ldc           #34                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      23: astore_2
+      24: goto          30
+      27: ldc           #36                 // String /bin/ls
+      29: astore_2
+      30: invokestatic  #38                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      33: aload_2
+      34: aload_1
+      35: invokedynamic #44,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      40: invokevirtual #48                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      43: astore_3
+      44: aload_3
+      45: invokevirtual #52                 // Method java/lang/Process.waitFor:()I
+      48: pop
+      49: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #63                 // Method goodG2B:()V
+       4: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #66                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

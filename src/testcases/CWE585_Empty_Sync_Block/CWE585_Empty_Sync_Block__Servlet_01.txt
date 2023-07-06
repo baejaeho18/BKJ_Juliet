@@ -1,0 +1,96 @@
+Compiled from "CWE585_Empty_Sync_Block__Servlet_01.java"
+public class testcases.CWE585_Empty_Sync_Block.CWE585_Empty_Sync_Block__Servlet_01 extends testcasesupport.AbstractTestCaseServlet {
+  private static final long serialVersionUID;
+
+  private static int intBad;
+
+  private static int intGood1;
+
+  public testcases.CWE585_Empty_Sync_Block.CWE585_Empty_Sync_Block__Servlet_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public static void helperBad();
+    Code:
+       0: ldc           #7                  // class testcases/CWE585_Empty_Sync_Block/CWE585_Empty_Sync_Block__Servlet_01
+       2: dup
+       3: astore_0
+       4: monitorenter
+       5: aload_0
+       6: monitorexit
+       7: goto          15
+      10: astore_1
+      11: aload_0
+      12: monitorexit
+      13: aload_1
+      14: athrow
+      15: getstatic     #9                  // Field intBad:I
+      18: iconst_2
+      19: imul
+      20: putstatic     #9                  // Field intBad:I
+      23: return
+    Exception table:
+       from    to  target type
+           5     7    10   any
+          10    13    10   any
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.InterruptedException, java.io.IOException;
+    Code:
+       0: invokestatic  #13                 // Method helperBad:()V
+       3: aload_2
+       4: invokeinterface #16,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       9: getstatic     #9                  // Field intBad:I
+      12: invokevirtual #22                 // Method java/io/PrintWriter.write:(I)V
+      15: return
+
+  public static void helperGood1();
+    Code:
+       0: ldc           #7                  // class testcases/CWE585_Empty_Sync_Block/CWE585_Empty_Sync_Block__Servlet_01
+       2: dup
+       3: astore_0
+       4: monitorenter
+       5: getstatic     #28                 // Field intGood1:I
+       8: iconst_2
+       9: imul
+      10: putstatic     #28                 // Field intGood1:I
+      13: aload_0
+      14: monitorexit
+      15: goto          23
+      18: astore_1
+      19: aload_0
+      20: monitorexit
+      21: aload_1
+      22: athrow
+      23: return
+    Exception table:
+       from    to  target type
+           5    15    18   any
+          18    21    18   any
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.InterruptedException, java.io.IOException;
+    Code:
+       0: invokestatic  #31                 // Method helperGood1:()V
+       3: aload_2
+       4: invokeinterface #16,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       9: getstatic     #28                 // Field intGood1:I
+      12: invokevirtual #22                 // Method java/io/PrintWriter.write:(I)V
+      15: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.InterruptedException, java.io.IOException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #34                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: return
+
+  static {};
+    Code:
+       0: iconst_1
+       1: putstatic     #9                  // Field intBad:I
+       4: iconst_1
+       5: putstatic     #28                 // Field intGood1:I
+       8: return
+}

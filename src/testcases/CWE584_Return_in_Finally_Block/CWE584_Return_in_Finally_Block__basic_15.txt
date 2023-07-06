@@ -1,0 +1,109 @@
+Compiled from "CWE584_Return_in_Finally_Block__basic_15.java"
+public class testcases.CWE584_Return_in_Finally_Block.CWE584_Return_in_Finally_Block__basic_15 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE584_Return_in_Finally_Block.CWE584_Return_in_Finally_Block__basic_15();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: bipush        7
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 37
+          }
+      20: new           #7                  // class java/lang/IllegalArgumentException
+      23: dup
+      24: invokespecial #9                  // Method java/lang/IllegalArgumentException."<init>":()V
+      27: athrow
+      28: astore_1
+      29: ldc           #10                 // String preventing incidental issues
+      31: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: return
+      35: astore_2
+      36: return
+      37: ldc           #18                 // String Benign, fixed string
+      39: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      42: return
+    Exception table:
+       from    to  target type
+          20    28    28   Class java/lang/IllegalArgumentException
+          20    34    35   any
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: bipush        8
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 28
+          }
+      20: ldc           #18                 // String Benign, fixed string
+      22: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      25: goto          58
+      28: new           #7                  // class java/lang/IllegalArgumentException
+      31: dup
+      32: invokespecial #9                  // Method java/lang/IllegalArgumentException."<init>":()V
+      35: athrow
+      36: astore_1
+      37: ldc           #10                 // String preventing incidental issues
+      39: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      42: ldc           #20                 // String In finally block, cleaning up
+      44: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      47: goto          58
+      50: astore_2
+      51: ldc           #20                 // String In finally block, cleaning up
+      53: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      56: aload_2
+      57: athrow
+      58: return
+    Exception table:
+       from    to  target type
+          28    36    36   Class java/lang/IllegalArgumentException
+          28    42    50   any
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: bipush        7
+       2: lookupswitch  { // 1
+                     7: 20
+               default: 53
+          }
+      20: new           #7                  // class java/lang/IllegalArgumentException
+      23: dup
+      24: invokespecial #9                  // Method java/lang/IllegalArgumentException."<init>":()V
+      27: athrow
+      28: astore_1
+      29: ldc           #10                 // String preventing incidental issues
+      31: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      34: ldc           #20                 // String In finally block, cleaning up
+      36: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      39: goto          50
+      42: astore_2
+      43: ldc           #20                 // String In finally block, cleaning up
+      45: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      48: aload_2
+      49: athrow
+      50: goto          58
+      53: ldc           #18                 // String Benign, fixed string
+      55: invokestatic  #12                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      58: return
+    Exception table:
+       from    to  target type
+          20    28    28   Class java/lang/IllegalArgumentException
+          20    34    42   any
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #22                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #27                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #30                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

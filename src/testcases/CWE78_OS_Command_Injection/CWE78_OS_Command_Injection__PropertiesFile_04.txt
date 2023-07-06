@@ -1,0 +1,175 @@
+Compiled from "CWE78_OS_Command_Injection__PropertiesFile_04.java"
+public class testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__PropertiesFile_04 extends testcasesupport.AbstractTestCase {
+  private static final boolean PRIVATE_STATIC_FINAL_TRUE;
+
+  private static final boolean PRIVATE_STATIC_FINAL_FALSE;
+
+  public testcases.CWE78_OS_Command_Injection.CWE78_OS_Command_Injection__PropertiesFile_04();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: ldc           #9                  // String
+       2: astore_1
+       3: new           #11                 // class java/util/Properties
+       6: dup
+       7: invokespecial #13                 // Method java/util/Properties."<init>":()V
+      10: astore_2
+      11: aconst_null
+      12: astore_3
+      13: new           #14                 // class java/io/FileInputStream
+      16: dup
+      17: ldc           #16                 // String ../common/config.properties
+      19: invokespecial #18                 // Method java/io/FileInputStream."<init>":(Ljava/lang/String;)V
+      22: astore_3
+      23: aload_2
+      24: aload_3
+      25: invokevirtual #21                 // Method java/util/Properties.load:(Ljava/io/InputStream;)V
+      28: aload_2
+      29: ldc           #25                 // String data
+      31: invokevirtual #27                 // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+      34: astore_1
+      35: aload_3
+      36: ifnull        43
+      39: aload_3
+      40: invokevirtual #31                 // Method java/io/FileInputStream.close:()V
+      43: goto          139
+      46: astore        4
+      48: getstatic     #36                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      51: getstatic     #42                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      54: ldc           #48                 // String Error closing FileInputStream
+      56: aload         4
+      58: invokevirtual #50                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      61: goto          139
+      64: astore        4
+      66: getstatic     #36                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      69: getstatic     #42                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      72: ldc           #56                 // String Error with stream reading
+      74: aload         4
+      76: invokevirtual #50                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      79: aload_3
+      80: ifnull        87
+      83: aload_3
+      84: invokevirtual #31                 // Method java/io/FileInputStream.close:()V
+      87: goto          139
+      90: astore        4
+      92: getstatic     #36                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      95: getstatic     #42                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      98: ldc           #48                 // String Error closing FileInputStream
+     100: aload         4
+     102: invokevirtual #50                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     105: goto          139
+     108: astore        5
+     110: aload_3
+     111: ifnull        118
+     114: aload_3
+     115: invokevirtual #31                 // Method java/io/FileInputStream.close:()V
+     118: goto          136
+     121: astore        6
+     123: getstatic     #36                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     126: getstatic     #42                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     129: ldc           #48                 // String Error closing FileInputStream
+     131: aload         6
+     133: invokevirtual #50                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     136: aload         5
+     138: athrow
+     139: ldc           #58                 // String os.name
+     141: invokestatic  #60                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+     144: invokevirtual #63                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+     147: ldc           #69                 // String win
+     149: invokevirtual #71                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+     152: iflt          161
+     155: ldc           #75                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+     157: astore_2
+     158: goto          164
+     161: ldc           #77                 // String /bin/ls
+     163: astore_2
+     164: invokestatic  #79                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+     167: aload_2
+     168: aload_1
+     169: invokedynamic #85,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     174: invokevirtual #89                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+     177: astore_3
+     178: aload_3
+     179: invokevirtual #93                 // Method java/lang/Process.waitFor:()I
+     182: pop
+     183: return
+    Exception table:
+       from    to  target type
+          35    43    46   Class java/io/IOException
+          13    35    64   Class java/io/IOException
+          79    87    90   Class java/io/IOException
+          13    35   108   any
+          64    79   108   any
+         110   118   121   Class java/io/IOException
+         108   110   108   any
+
+  private void goodG2B1() throws java.lang.Throwable;
+    Code:
+       0: ldc           #99                 // String foo
+       2: astore_1
+       3: ldc           #58                 // String os.name
+       5: invokestatic  #60                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+       8: invokevirtual #63                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      11: ldc           #69                 // String win
+      13: invokevirtual #71                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      16: iflt          25
+      19: ldc           #75                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      21: astore_2
+      22: goto          28
+      25: ldc           #77                 // String /bin/ls
+      27: astore_2
+      28: invokestatic  #79                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      31: aload_2
+      32: aload_1
+      33: invokedynamic #85,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      38: invokevirtual #89                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      41: astore_3
+      42: aload_3
+      43: invokevirtual #93                 // Method java/lang/Process.waitFor:()I
+      46: pop
+      47: return
+
+  private void goodG2B2() throws java.lang.Throwable;
+    Code:
+       0: ldc           #99                 // String foo
+       2: astore_1
+       3: ldc           #58                 // String os.name
+       5: invokestatic  #60                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+       8: invokevirtual #63                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      11: ldc           #69                 // String win
+      13: invokevirtual #71                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      16: iflt          25
+      19: ldc           #75                 // String c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir
+      21: astore_2
+      22: goto          28
+      25: ldc           #77                 // String /bin/ls
+      27: astore_2
+      28: invokestatic  #79                 // Method java/lang/Runtime.getRuntime:()Ljava/lang/Runtime;
+      31: aload_2
+      32: aload_1
+      33: invokedynamic #85,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      38: invokevirtual #89                 // Method java/lang/Runtime.exec:(Ljava/lang/String;)Ljava/lang/Process;
+      41: astore_3
+      42: aload_3
+      43: invokevirtual #93                 // Method java/lang/Process.waitFor:()I
+      46: pop
+      47: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #101                // Method goodG2B1:()V
+       4: aload_0
+       5: invokevirtual #104                // Method goodG2B2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #107                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

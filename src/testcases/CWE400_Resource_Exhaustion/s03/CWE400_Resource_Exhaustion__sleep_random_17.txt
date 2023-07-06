@@ -1,0 +1,81 @@
+Compiled from "CWE400_Resource_Exhaustion__sleep_random_17.java"
+public class testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_random_17 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE400_Resource_Exhaustion.s03.CWE400_Resource_Exhaustion__sleep_random_17();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextInt:()I
+      10: istore_1
+      11: iconst_0
+      12: istore_2
+      13: iload_2
+      14: iconst_1
+      15: if_icmpge     29
+      18: iload_1
+      19: i2l
+      20: invokestatic  #14                 // Method java/lang/Thread.sleep:(J)V
+      23: iinc          2, 1
+      26: goto          13
+      29: return
+
+  private void goodG2B() throws java.lang.Throwable;
+    Code:
+       0: iconst_2
+       1: istore_1
+       2: iconst_0
+       3: istore_2
+       4: iload_2
+       5: iconst_1
+       6: if_icmpge     20
+       9: iload_1
+      10: i2l
+      11: invokestatic  #14                 // Method java/lang/Thread.sleep:(J)V
+      14: iinc          2, 1
+      17: goto          4
+      20: return
+
+  private void goodB2G() throws java.lang.Throwable;
+    Code:
+       0: new           #7                  // class java/security/SecureRandom
+       3: dup
+       4: invokespecial #9                  // Method java/security/SecureRandom."<init>":()V
+       7: invokevirtual #10                 // Method java/security/SecureRandom.nextInt:()I
+      10: istore_1
+      11: iconst_0
+      12: istore_2
+      13: iload_2
+      14: iconst_1
+      15: if_icmpge     40
+      18: iload_1
+      19: ifle          34
+      22: iload_1
+      23: sipush        2000
+      26: if_icmpgt     34
+      29: iload_1
+      30: i2l
+      31: invokestatic  #14                 // Method java/lang/Thread.sleep:(J)V
+      34: iinc          2, 1
+      37: goto          13
+      40: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #20                 // Method goodG2B:()V
+       4: aload_0
+       5: invokevirtual #25                 // Method goodB2G:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #28                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

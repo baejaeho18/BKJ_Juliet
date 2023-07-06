@@ -1,0 +1,73 @@
+Compiled from "CWE476_NULL_Pointer_Dereference__deref_after_check_07.java"
+public class testcases.CWE476_NULL_Pointer_Dereference.CWE476_NULL_Pointer_Dereference__deref_after_check_07 extends testcasesupport.AbstractTestCase {
+  private int privateFive;
+
+  public testcases.CWE476_NULL_Pointer_Dereference.CWE476_NULL_Pointer_Dereference__deref_after_check_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     21
+       8: aconst_null
+       9: astore_1
+      10: aload_1
+      11: ifnonnull     21
+      14: aload_1
+      15: invokevirtual #13                 // Method java/lang/String.length:()I
+      18: invokestatic  #19                 // Method testcasesupport/IO.writeLine:(I)V
+      21: return
+
+  private void good1() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     16
+       8: ldc           #25                 // String Benign, fixed string
+      10: invokestatic  #27                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      13: goto          27
+      16: aconst_null
+      17: astore_1
+      18: aload_1
+      19: ifnonnull     27
+      22: ldc           #30                 // String The string is null
+      24: invokestatic  #27                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      27: return
+
+  private void good2() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     19
+       8: aconst_null
+       9: astore_1
+      10: aload_1
+      11: ifnonnull     19
+      14: ldc           #30                 // String The string is null
+      16: invokestatic  #27                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+      19: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #32                 // Method good1:()V
+       4: aload_0
+       5: invokevirtual #35                 // Method good2:()V
+       8: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #38                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

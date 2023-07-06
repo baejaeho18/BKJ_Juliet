@@ -1,0 +1,103 @@
+Compiled from "CWE80_XSS__Servlet_getCookies_Servlet_08.java"
+public class testcases.CWE80_XSS.s01.CWE80_XSS__Servlet_getCookies_Servlet_08 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE80_XSS.s01.CWE80_XSS__Servlet_getCookies_Servlet_08();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  private boolean privateReturnsTrue();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  private boolean privateReturnsFalse();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          34
+       7: ldc           #13                 // String
+       9: astore_3
+      10: aload_1
+      11: invokeinterface #15,  1           // InterfaceMethod javax/servlet/http/HttpServletRequest.getCookies:()[Ljavax/servlet/http/Cookie;
+      16: astore        4
+      18: aload         4
+      20: ifnull        31
+      23: aload         4
+      25: iconst_0
+      26: aaload
+      27: invokevirtual #21                 // Method javax/servlet/http/Cookie.getValue:()Ljava/lang/String;
+      30: astore_3
+      31: goto          36
+      34: aconst_null
+      35: astore_3
+      36: aload_3
+      37: ifnull        55
+      40: aload_2
+      41: invokeinterface #27,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      46: aload_3
+      47: invokedynamic #33,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      52: invokevirtual #37                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      55: return
+
+  private void goodG2B1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #43                 // Method privateReturnsFalse:()Z
+       4: ifeq          12
+       7: aconst_null
+       8: astore_3
+       9: goto          15
+      12: ldc           #46                 // String foo
+      14: astore_3
+      15: aload_3
+      16: ifnull        34
+      19: aload_2
+      20: invokeinterface #27,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      25: aload_3
+      26: invokedynamic #33,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      31: invokevirtual #37                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      34: return
+
+  private void goodG2B2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #7                  // Method privateReturnsTrue:()Z
+       4: ifeq          13
+       7: ldc           #46                 // String foo
+       9: astore_3
+      10: goto          15
+      13: aconst_null
+      14: astore_3
+      15: aload_3
+      16: ifnull        34
+      19: aload_2
+      20: invokeinterface #27,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+      25: aload_3
+      26: invokedynamic #33,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      31: invokevirtual #37                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      34: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #48                 // Method goodG2B1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #52                 // Method goodG2B2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #55                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
