@@ -1,0 +1,412 @@
+Compiled from "CWE90_LDAP_Injection__getParameter_Servlet_11.java"
+public class testcases.CWE90_LDAP_Injection.CWE90_LDAP_Injection__getParameter_Servlet_11 extends testcasesupport.AbstractTestCaseServlet {
+  public testcases.CWE90_LDAP_Injection.CWE90_LDAP_Injection__getParameter_Servlet_11();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: invokestatic  #7                  // Method testcasesupport/IO.staticReturnsTrue:()Z
+       3: ifeq          18
+       6: aload_1
+       7: ldc           #13                 // String name
+       9: invokeinterface #15,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      14: astore_3
+      15: goto          20
+      18: aconst_null
+      19: astore_3
+      20: new           #21                 // class java/util/Hashtable
+      23: dup
+      24: invokespecial #23                 // Method java/util/Hashtable."<init>":()V
+      27: astore        4
+      29: aload         4
+      31: ldc           #26                 // String java.naming.factory.initial
+      33: ldc           #28                 // String com.sun.jndi.ldap.LdapCtxFactory
+      35: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      38: pop
+      39: aload         4
+      41: ldc           #34                 // String java.naming.provider.url
+      43: ldc           #36                 // String ldap://localhost:389
+      45: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      48: pop
+      49: aconst_null
+      50: astore        5
+      52: new           #38                 // class javax/naming/directory/InitialDirContext
+      55: dup
+      56: aload         4
+      58: invokespecial #40                 // Method javax/naming/directory/InitialDirContext."<init>":(Ljava/util/Hashtable;)V
+      61: astore        5
+      63: aload_3
+      64: invokedynamic #43,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      69: astore        6
+      71: aload         5
+      73: ldc           #46                 // String
+      75: aload         6
+      77: aconst_null
+      78: invokeinterface #48,  4           // InterfaceMethod javax/naming/directory/DirContext.search:(Ljava/lang/String;Ljava/lang/String;Ljavax/naming/directory/SearchControls;)Ljavax/naming/NamingEnumeration;
+      83: astore        7
+      85: aload         7
+      87: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+      92: ifeq          191
+      95: aload         7
+      97: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     102: checkcast     #63                 // class javax/naming/directory/SearchResult
+     105: astore        8
+     107: aload         8
+     109: invokevirtual #65                 // Method javax/naming/directory/SearchResult.getAttributes:()Ljavax/naming/directory/Attributes;
+     112: astore        9
+     114: aload         9
+     116: invokeinterface #69,  1           // InterfaceMethod javax/naming/directory/Attributes.getAll:()Ljavax/naming/NamingEnumeration;
+     121: astore        10
+     123: aload         10
+     125: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     130: ifeq          188
+     133: aload         10
+     135: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     140: checkcast     #75                 // class javax/naming/directory/Attribute
+     143: astore        11
+     145: aload         11
+     147: invokeinterface #77,  1           // InterfaceMethod javax/naming/directory/Attribute.getAll:()Ljavax/naming/NamingEnumeration;
+     152: astore        12
+     154: aload         12
+     156: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     161: ifeq          185
+     164: aload         12
+     166: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     171: invokevirtual #78                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     174: invokedynamic #84,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     179: invokestatic  #85                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     182: goto          154
+     185: goto          123
+     188: goto          85
+     191: aload         5
+     193: ifnull        307
+     196: aload         5
+     198: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     203: goto          307
+     206: astore        6
+     208: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     211: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     214: ldc           #104                // String Error closing DirContext
+     216: aload         6
+     218: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     221: goto          307
+     224: astore        6
+     226: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     229: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     232: ldc           #112                // String The LDAP service was not found or login failed.
+     234: aload         6
+     236: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     239: aload         5
+     241: ifnull        307
+     244: aload         5
+     246: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     251: goto          307
+     254: astore        6
+     256: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     259: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     262: ldc           #104                // String Error closing DirContext
+     264: aload         6
+     266: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     269: goto          307
+     272: astore        13
+     274: aload         5
+     276: ifnull        304
+     279: aload         5
+     281: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     286: goto          304
+     289: astore        14
+     291: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     294: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     297: ldc           #104                // String Error closing DirContext
+     299: aload         14
+     301: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     304: aload         13
+     306: athrow
+     307: return
+    Exception table:
+       from    to  target type
+         196   203   206   Class javax/naming/NamingException
+          52   191   224   Class javax/naming/NamingException
+         244   251   254   Class javax/naming/NamingException
+          52   191   272   any
+         224   239   272   any
+         279   286   289   Class javax/naming/NamingException
+         272   274   272   any
+
+  private void goodG2B1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: invokestatic  #114                // Method testcasesupport/IO.staticReturnsFalse:()Z
+       3: ifeq          11
+       6: aconst_null
+       7: astore_3
+       8: goto          14
+      11: ldc           #117                // String foo
+      13: astore_3
+      14: new           #21                 // class java/util/Hashtable
+      17: dup
+      18: invokespecial #23                 // Method java/util/Hashtable."<init>":()V
+      21: astore        4
+      23: aload         4
+      25: ldc           #26                 // String java.naming.factory.initial
+      27: ldc           #28                 // String com.sun.jndi.ldap.LdapCtxFactory
+      29: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      32: pop
+      33: aload         4
+      35: ldc           #34                 // String java.naming.provider.url
+      37: ldc           #36                 // String ldap://localhost:389
+      39: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      42: pop
+      43: aconst_null
+      44: astore        5
+      46: new           #38                 // class javax/naming/directory/InitialDirContext
+      49: dup
+      50: aload         4
+      52: invokespecial #40                 // Method javax/naming/directory/InitialDirContext."<init>":(Ljava/util/Hashtable;)V
+      55: astore        5
+      57: aload_3
+      58: invokedynamic #43,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      63: astore        6
+      65: aload         5
+      67: ldc           #46                 // String
+      69: aload         6
+      71: aconst_null
+      72: invokeinterface #48,  4           // InterfaceMethod javax/naming/directory/DirContext.search:(Ljava/lang/String;Ljava/lang/String;Ljavax/naming/directory/SearchControls;)Ljavax/naming/NamingEnumeration;
+      77: astore        7
+      79: aload         7
+      81: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+      86: ifeq          185
+      89: aload         7
+      91: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+      96: checkcast     #63                 // class javax/naming/directory/SearchResult
+      99: astore        8
+     101: aload         8
+     103: invokevirtual #65                 // Method javax/naming/directory/SearchResult.getAttributes:()Ljavax/naming/directory/Attributes;
+     106: astore        9
+     108: aload         9
+     110: invokeinterface #69,  1           // InterfaceMethod javax/naming/directory/Attributes.getAll:()Ljavax/naming/NamingEnumeration;
+     115: astore        10
+     117: aload         10
+     119: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     124: ifeq          182
+     127: aload         10
+     129: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     134: checkcast     #75                 // class javax/naming/directory/Attribute
+     137: astore        11
+     139: aload         11
+     141: invokeinterface #77,  1           // InterfaceMethod javax/naming/directory/Attribute.getAll:()Ljavax/naming/NamingEnumeration;
+     146: astore        12
+     148: aload         12
+     150: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     155: ifeq          179
+     158: aload         12
+     160: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     165: invokevirtual #78                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     168: invokedynamic #84,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     173: invokestatic  #85                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     176: goto          148
+     179: goto          117
+     182: goto          79
+     185: aload         5
+     187: ifnull        301
+     190: aload         5
+     192: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     197: goto          301
+     200: astore        6
+     202: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     205: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     208: ldc           #104                // String Error closing DirContext
+     210: aload         6
+     212: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     215: goto          301
+     218: astore        6
+     220: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     223: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     226: ldc           #112                // String The LDAP service was not found or login failed.
+     228: aload         6
+     230: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     233: aload         5
+     235: ifnull        301
+     238: aload         5
+     240: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     245: goto          301
+     248: astore        6
+     250: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     253: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     256: ldc           #104                // String Error closing DirContext
+     258: aload         6
+     260: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     263: goto          301
+     266: astore        13
+     268: aload         5
+     270: ifnull        298
+     273: aload         5
+     275: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     280: goto          298
+     283: astore        14
+     285: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     288: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     291: ldc           #104                // String Error closing DirContext
+     293: aload         14
+     295: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     298: aload         13
+     300: athrow
+     301: return
+    Exception table:
+       from    to  target type
+         190   197   200   Class javax/naming/NamingException
+          46   185   218   Class javax/naming/NamingException
+         238   245   248   Class javax/naming/NamingException
+          46   185   266   any
+         218   233   266   any
+         273   280   283   Class javax/naming/NamingException
+         266   268   266   any
+
+  private void goodG2B2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: invokestatic  #7                  // Method testcasesupport/IO.staticReturnsTrue:()Z
+       3: ifeq          12
+       6: ldc           #117                // String foo
+       8: astore_3
+       9: goto          14
+      12: aconst_null
+      13: astore_3
+      14: new           #21                 // class java/util/Hashtable
+      17: dup
+      18: invokespecial #23                 // Method java/util/Hashtable."<init>":()V
+      21: astore        4
+      23: aload         4
+      25: ldc           #26                 // String java.naming.factory.initial
+      27: ldc           #28                 // String com.sun.jndi.ldap.LdapCtxFactory
+      29: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      32: pop
+      33: aload         4
+      35: ldc           #34                 // String java.naming.provider.url
+      37: ldc           #36                 // String ldap://localhost:389
+      39: invokevirtual #30                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      42: pop
+      43: aconst_null
+      44: astore        5
+      46: new           #38                 // class javax/naming/directory/InitialDirContext
+      49: dup
+      50: aload         4
+      52: invokespecial #40                 // Method javax/naming/directory/InitialDirContext."<init>":(Ljava/util/Hashtable;)V
+      55: astore        5
+      57: aload_3
+      58: invokedynamic #43,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      63: astore        6
+      65: aload         5
+      67: ldc           #46                 // String
+      69: aload         6
+      71: aconst_null
+      72: invokeinterface #48,  4           // InterfaceMethod javax/naming/directory/DirContext.search:(Ljava/lang/String;Ljava/lang/String;Ljavax/naming/directory/SearchControls;)Ljavax/naming/NamingEnumeration;
+      77: astore        7
+      79: aload         7
+      81: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+      86: ifeq          185
+      89: aload         7
+      91: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+      96: checkcast     #63                 // class javax/naming/directory/SearchResult
+      99: astore        8
+     101: aload         8
+     103: invokevirtual #65                 // Method javax/naming/directory/SearchResult.getAttributes:()Ljavax/naming/directory/Attributes;
+     106: astore        9
+     108: aload         9
+     110: invokeinterface #69,  1           // InterfaceMethod javax/naming/directory/Attributes.getAll:()Ljavax/naming/NamingEnumeration;
+     115: astore        10
+     117: aload         10
+     119: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     124: ifeq          182
+     127: aload         10
+     129: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     134: checkcast     #75                 // class javax/naming/directory/Attribute
+     137: astore        11
+     139: aload         11
+     141: invokeinterface #77,  1           // InterfaceMethod javax/naming/directory/Attribute.getAll:()Ljavax/naming/NamingEnumeration;
+     146: astore        12
+     148: aload         12
+     150: invokeinterface #54,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     155: ifeq          179
+     158: aload         12
+     160: invokeinterface #59,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     165: invokevirtual #78                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     168: invokedynamic #84,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     173: invokestatic  #85                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     176: goto          148
+     179: goto          117
+     182: goto          79
+     185: aload         5
+     187: ifnull        301
+     190: aload         5
+     192: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     197: goto          301
+     200: astore        6
+     202: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     205: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     208: ldc           #104                // String Error closing DirContext
+     210: aload         6
+     212: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     215: goto          301
+     218: astore        6
+     220: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     223: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     226: ldc           #112                // String The LDAP service was not found or login failed.
+     228: aload         6
+     230: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     233: aload         5
+     235: ifnull        301
+     238: aload         5
+     240: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     245: goto          301
+     248: astore        6
+     250: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     253: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     256: ldc           #104                // String Error closing DirContext
+     258: aload         6
+     260: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     263: goto          301
+     266: astore        13
+     268: aload         5
+     270: ifnull        298
+     273: aload         5
+     275: invokeinterface #89,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     280: goto          298
+     283: astore        14
+     285: getstatic     #94                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     288: getstatic     #98                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     291: ldc           #104                // String Error closing DirContext
+     293: aload         14
+     295: invokevirtual #106                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     298: aload         13
+     300: athrow
+     301: return
+    Exception table:
+       from    to  target type
+         190   197   200   Class javax/naming/NamingException
+          46   185   218   Class javax/naming/NamingException
+         238   245   248   Class javax/naming/NamingException
+          46   185   266   any
+         218   233   266   any
+         273   280   283   Class javax/naming/NamingException
+         266   268   266   any
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #119                // Method goodG2B1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #125                // Method goodG2B2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #128                // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

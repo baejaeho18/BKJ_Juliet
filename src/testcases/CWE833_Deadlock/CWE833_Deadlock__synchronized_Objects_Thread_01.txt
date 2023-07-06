@@ -1,0 +1,316 @@
+Compiled from "CWE833_Deadlock__synchronized_Objects_Thread_01.java"
+public class testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_Objects_Thread_01 extends testcasesupport.AbstractTestCase {
+  private static int intBadNumber1;
+
+  private static final java.lang.Object BAD_NUMBER1_LOCK;
+
+  private static int intBadNumber2;
+
+  private static final java.lang.Object BAD_NUMBER2_LOCK;
+
+  private static int intGood1Number1;
+
+  private static final java.lang.Object GOOD_NUMBER1_LOCK;
+
+  private static int intGood1Number2;
+
+  private static final java.lang.Object GOOD_NUMBER2_LOCK;
+
+  public testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_Objects_Thread_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public static void helperAddBad();
+    Code:
+       0: getstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: ldc2_w        #13                 // long 1000l
+       9: invokestatic  #15                 // Method java/lang/Thread.sleep:(J)V
+      12: goto          28
+      15: astore_1
+      16: getstatic     #23                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      19: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      22: ldc           #35                 // String Sleep Interrupted
+      24: aload_1
+      25: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      28: getstatic     #43                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+      31: dup
+      32: astore_1
+      33: monitorenter
+      34: getstatic     #46                 // Field intBadNumber1:I
+      37: getstatic     #50                 // Field intBadNumber2:I
+      40: iadd
+      41: putstatic     #46                 // Field intBadNumber1:I
+      44: aload_1
+      45: monitorexit
+      46: goto          54
+      49: astore_2
+      50: aload_1
+      51: monitorexit
+      52: aload_2
+      53: athrow
+      54: aload_0
+      55: monitorexit
+      56: goto          64
+      59: astore_3
+      60: aload_0
+      61: monitorexit
+      62: aload_3
+      63: athrow
+      64: return
+    Exception table:
+       from    to  target type
+           6    12    15   Class java/lang/InterruptedException
+          34    46    49   any
+          49    52    49   any
+           6    56    59   any
+          59    62    59   any
+
+  public static void helperMultiplyBad();
+    Code:
+       0: getstatic     #43                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: ldc2_w        #13                 // long 1000l
+       9: invokestatic  #15                 // Method java/lang/Thread.sleep:(J)V
+      12: goto          28
+      15: astore_1
+      16: getstatic     #23                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      19: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      22: ldc           #35                 // String Sleep Interrupted
+      24: aload_1
+      25: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      28: getstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+      31: dup
+      32: astore_1
+      33: monitorenter
+      34: getstatic     #46                 // Field intBadNumber1:I
+      37: getstatic     #50                 // Field intBadNumber2:I
+      40: imul
+      41: putstatic     #46                 // Field intBadNumber1:I
+      44: aload_1
+      45: monitorexit
+      46: goto          54
+      49: astore_2
+      50: aload_1
+      51: monitorexit
+      52: aload_2
+      53: athrow
+      54: aload_0
+      55: monitorexit
+      56: goto          64
+      59: astore_3
+      60: aload_0
+      61: monitorexit
+      62: aload_3
+      63: athrow
+      64: return
+    Exception table:
+       from    to  target type
+           6    12    15   Class java/lang/InterruptedException
+          34    46    49   any
+          49    52    49   any
+           6    56    59   any
+          59    62    59   any
+
+  public void bad() throws java.lang.Throwable;
+    Code:
+       0: new           #16                 // class java/lang/Thread
+       3: dup
+       4: new           #53                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$1
+       7: dup
+       8: aload_0
+       9: invokespecial #55                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$1."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01;)V
+      12: invokespecial #58                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #16                 // class java/lang/Thread
+      19: dup
+      20: new           #61                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$2
+      23: dup
+      24: aload_0
+      25: invokespecial #63                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$2."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01;)V
+      28: invokespecial #58                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #64                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #64                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #67                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #67                 // Method java/lang/Thread.join:()V
+      48: getstatic     #46                 // Field intBadNumber1:I
+      51: invokestatic  #70                 // Method testcasesupport/IO.writeLine:(I)V
+      54: return
+
+  public static void helperAddGood1();
+    Code:
+       0: getstatic     #74                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: ldc2_w        #13                 // long 1000l
+       9: invokestatic  #15                 // Method java/lang/Thread.sleep:(J)V
+      12: goto          28
+      15: astore_1
+      16: getstatic     #23                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      19: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      22: ldc           #35                 // String Sleep Interrupted
+      24: aload_1
+      25: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      28: getstatic     #77                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+      31: dup
+      32: astore_1
+      33: monitorenter
+      34: getstatic     #80                 // Field intGood1Number1:I
+      37: getstatic     #83                 // Field intGood1Number2:I
+      40: iadd
+      41: putstatic     #80                 // Field intGood1Number1:I
+      44: aload_1
+      45: monitorexit
+      46: goto          54
+      49: astore_2
+      50: aload_1
+      51: monitorexit
+      52: aload_2
+      53: athrow
+      54: aload_0
+      55: monitorexit
+      56: goto          64
+      59: astore_3
+      60: aload_0
+      61: monitorexit
+      62: aload_3
+      63: athrow
+      64: return
+    Exception table:
+       from    to  target type
+           6    12    15   Class java/lang/InterruptedException
+          34    46    49   any
+          49    52    49   any
+           6    56    59   any
+          59    62    59   any
+
+  public static void helperMultiplyGood1();
+    Code:
+       0: getstatic     #74                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+       3: dup
+       4: astore_0
+       5: monitorenter
+       6: ldc2_w        #13                 // long 1000l
+       9: invokestatic  #15                 // Method java/lang/Thread.sleep:(J)V
+      12: goto          28
+      15: astore_1
+      16: getstatic     #23                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      19: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      22: ldc           #35                 // String Sleep Interrupted
+      24: aload_1
+      25: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      28: getstatic     #77                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+      31: dup
+      32: astore_1
+      33: monitorenter
+      34: getstatic     #80                 // Field intGood1Number1:I
+      37: getstatic     #83                 // Field intGood1Number2:I
+      40: imul
+      41: putstatic     #80                 // Field intGood1Number1:I
+      44: aload_1
+      45: monitorexit
+      46: goto          54
+      49: astore_2
+      50: aload_1
+      51: monitorexit
+      52: aload_2
+      53: athrow
+      54: aload_0
+      55: monitorexit
+      56: goto          64
+      59: astore_3
+      60: aload_0
+      61: monitorexit
+      62: aload_3
+      63: athrow
+      64: return
+    Exception table:
+       from    to  target type
+           6    12    15   Class java/lang/InterruptedException
+          34    46    49   any
+          49    52    49   any
+           6    56    59   any
+          59    62    59   any
+
+  public void good1() throws java.lang.Throwable;
+    Code:
+       0: new           #16                 // class java/lang/Thread
+       3: dup
+       4: new           #86                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$3
+       7: dup
+       8: aload_0
+       9: invokespecial #88                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$3."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01;)V
+      12: invokespecial #58                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      15: astore_1
+      16: new           #16                 // class java/lang/Thread
+      19: dup
+      20: new           #89                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$4
+      23: dup
+      24: aload_0
+      25: invokespecial #91                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01$4."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_Objects_Thread_01;)V
+      28: invokespecial #58                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      31: astore_2
+      32: aload_1
+      33: invokevirtual #64                 // Method java/lang/Thread.start:()V
+      36: aload_2
+      37: invokevirtual #64                 // Method java/lang/Thread.start:()V
+      40: aload_1
+      41: invokevirtual #67                 // Method java/lang/Thread.join:()V
+      44: aload_2
+      45: invokevirtual #67                 // Method java/lang/Thread.join:()V
+      48: getstatic     #80                 // Field intGood1Number1:I
+      51: invokestatic  #70                 // Method testcasesupport/IO.writeLine:(I)V
+      54: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method good1:()V
+       4: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #95                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+
+  static {};
+    Code:
+       0: iconst_3
+       1: putstatic     #46                 // Field intBadNumber1:I
+       4: new           #99                 // class java/lang/Object
+       7: dup
+       8: invokespecial #101                // Method java/lang/Object."<init>":()V
+      11: putstatic     #7                  // Field BAD_NUMBER1_LOCK:Ljava/lang/Object;
+      14: iconst_5
+      15: putstatic     #50                 // Field intBadNumber2:I
+      18: new           #99                 // class java/lang/Object
+      21: dup
+      22: invokespecial #101                // Method java/lang/Object."<init>":()V
+      25: putstatic     #43                 // Field BAD_NUMBER2_LOCK:Ljava/lang/Object;
+      28: iconst_3
+      29: putstatic     #80                 // Field intGood1Number1:I
+      32: new           #99                 // class java/lang/Object
+      35: dup
+      36: invokespecial #101                // Method java/lang/Object."<init>":()V
+      39: putstatic     #74                 // Field GOOD_NUMBER1_LOCK:Ljava/lang/Object;
+      42: iconst_5
+      43: putstatic     #83                 // Field intGood1Number2:I
+      46: new           #99                 // class java/lang/Object
+      49: dup
+      50: invokespecial #101                // Method java/lang/Object."<init>":()V
+      53: putstatic     #77                 // Field GOOD_NUMBER2_LOCK:Ljava/lang/Object;
+      56: return
+}

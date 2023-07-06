@@ -1,0 +1,100 @@
+Compiled from "CWE832_Unlock_Not_Locked__ReentrantLock_Servlet_01.java"
+public class testcases.CWE832_Unlock_Not_Locked.CWE832_Unlock_Not_Locked__ReentrantLock_Servlet_01 extends testcasesupport.AbstractTestCaseServlet {
+  private static final long serialVersionUID;
+
+  private static int intBad;
+
+  private static final java.util.concurrent.locks.ReentrantLock REENTRANT_LOCK_BAD;
+
+  private static int intGood1;
+
+  private static final java.util.concurrent.locks.ReentrantLock REENTRANT_LOCK_GOOD1;
+
+  public testcases.CWE832_Unlock_Not_Locked.CWE832_Unlock_Not_Locked__ReentrantLock_Servlet_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: return
+
+  public static void helperBad();
+    Code:
+       0: getstatic     #7                  // Field intBad:I
+       3: iconst_2
+       4: imul
+       5: putstatic     #7                  // Field intBad:I
+       8: getstatic     #13                 // Field REENTRANT_LOCK_BAD:Ljava/util/concurrent/locks/ReentrantLock;
+      11: invokevirtual #17                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      14: goto          26
+      17: astore_0
+      18: getstatic     #13                 // Field REENTRANT_LOCK_BAD:Ljava/util/concurrent/locks/ReentrantLock;
+      21: invokevirtual #17                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      24: aload_0
+      25: athrow
+      26: return
+    Exception table:
+       from    to  target type
+           0     8    17   any
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: invokestatic  #22                 // Method helperBad:()V
+       3: aload_2
+       4: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       9: getstatic     #7                  // Field intBad:I
+      12: invokevirtual #31                 // Method java/io/PrintWriter.write:(I)V
+      15: return
+
+  public static void helperGood1();
+    Code:
+       0: getstatic     #37                 // Field REENTRANT_LOCK_GOOD1:Ljava/util/concurrent/locks/ReentrantLock;
+       3: invokevirtual #40                 // Method java/util/concurrent/locks/ReentrantLock.lock:()V
+       6: getstatic     #43                 // Field intGood1:I
+       9: iconst_2
+      10: imul
+      11: putstatic     #43                 // Field intGood1:I
+      14: getstatic     #37                 // Field REENTRANT_LOCK_GOOD1:Ljava/util/concurrent/locks/ReentrantLock;
+      17: invokevirtual #17                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      20: goto          32
+      23: astore_0
+      24: getstatic     #37                 // Field REENTRANT_LOCK_GOOD1:Ljava/util/concurrent/locks/ReentrantLock;
+      27: invokevirtual #17                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+      30: aload_0
+      31: athrow
+      32: return
+    Exception table:
+       from    to  target type
+           6    14    23   any
+
+  private void good1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: invokestatic  #46                 // Method helperGood1:()V
+       3: aload_2
+       4: invokeinterface #25,  1           // InterfaceMethod javax/servlet/http/HttpServletResponse.getWriter:()Ljava/io/PrintWriter;
+       9: getstatic     #43                 // Field intGood1:I
+      12: invokevirtual #31                 // Method java/io/PrintWriter.write:(I)V
+      15: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #49                 // Method good1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: return
+
+  static {};
+    Code:
+       0: iconst_1
+       1: putstatic     #7                  // Field intBad:I
+       4: new           #18                 // class java/util/concurrent/locks/ReentrantLock
+       7: dup
+       8: invokespecial #53                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+      11: putstatic     #13                 // Field REENTRANT_LOCK_BAD:Ljava/util/concurrent/locks/ReentrantLock;
+      14: iconst_1
+      15: putstatic     #43                 // Field intGood1:I
+      18: new           #18                 // class java/util/concurrent/locks/ReentrantLock
+      21: dup
+      22: invokespecial #53                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+      25: putstatic     #37                 // Field REENTRANT_LOCK_GOOD1:Ljava/util/concurrent/locks/ReentrantLock;
+      28: return
+}

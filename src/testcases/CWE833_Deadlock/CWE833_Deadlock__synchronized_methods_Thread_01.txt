@@ -1,0 +1,168 @@
+Compiled from "CWE833_Deadlock__synchronized_methods_Thread_01.java"
+public class testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01 extends testcasesupport.AbstractTestCase {
+  public testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCase."<init>":()V
+       4: return
+
+  public synchronized void helperBowBad(testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01);
+    Code:
+       0: ldc           #7                  // String helperBowBad
+       2: invokestatic  #9                  // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+       5: ldc2_w        #15                 // long 1000l
+       8: invokestatic  #17                 // Method java/lang/Thread.sleep:(J)V
+      11: goto          27
+      14: astore_2
+      15: getstatic     #25                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      18: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      21: ldc           #35                 // String Sleep Interrupted
+      23: aload_2
+      24: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      27: aload_1
+      28: aload_0
+      29: invokevirtual #43                 // Method helperBowBackBad:(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      32: return
+    Exception table:
+       from    to  target type
+           5    11    14   Class java/lang/InterruptedException
+
+  public synchronized void helperBowBackBad(testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01);
+    Code:
+       0: ldc           #49                 // String helperBowBackBad
+       2: invokestatic  #9                  // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+       5: return
+
+  public void bad() throws java.lang.InterruptedException;
+    Code:
+       0: new           #44                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01
+       3: dup
+       4: invokespecial #50                 // Method "<init>":()V
+       7: astore_1
+       8: new           #44                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01
+      11: dup
+      12: invokespecial #50                 // Method "<init>":()V
+      15: astore_2
+      16: new           #18                 // class java/lang/Thread
+      19: dup
+      20: new           #51                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$1
+      23: dup
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokespecial #53                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$1."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      30: invokespecial #56                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      33: astore_3
+      34: new           #18                 // class java/lang/Thread
+      37: dup
+      38: new           #59                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$2
+      41: dup
+      42: aload_0
+      43: aload_2
+      44: aload_1
+      45: invokespecial #61                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$2."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      48: invokespecial #56                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      51: astore        4
+      53: aload_3
+      54: invokevirtual #62                 // Method java/lang/Thread.start:()V
+      57: aload         4
+      59: invokevirtual #62                 // Method java/lang/Thread.start:()V
+      62: aload_3
+      63: invokevirtual #65                 // Method java/lang/Thread.join:()V
+      66: aload         4
+      68: invokevirtual #65                 // Method java/lang/Thread.join:()V
+      71: return
+
+  public void helperBowGood1(testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01);
+    Code:
+       0: aload_0
+       1: dup
+       2: astore_2
+       3: monitorenter
+       4: ldc           #68                 // String helperBowGood1
+       6: invokestatic  #9                  // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+       9: ldc2_w        #15                 // long 1000l
+      12: invokestatic  #17                 // Method java/lang/Thread.sleep:(J)V
+      15: goto          31
+      18: astore_3
+      19: getstatic     #25                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+      22: getstatic     #29                 // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+      25: ldc           #35                 // String Sleep Interrupted
+      27: aload_3
+      28: invokevirtual #37                 // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+      31: aload_2
+      32: monitorexit
+      33: goto          43
+      36: astore        4
+      38: aload_2
+      39: monitorexit
+      40: aload         4
+      42: athrow
+      43: aload_1
+      44: aload_0
+      45: invokevirtual #70                 // Method helperBowBackGood1:(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      48: return
+    Exception table:
+       from    to  target type
+           9    15    18   Class java/lang/InterruptedException
+           4    33    36   any
+          36    40    36   any
+
+  public synchronized void helperBowBackGood1(testcases.CWE833_Deadlock.CWE833_Deadlock__synchronized_methods_Thread_01);
+    Code:
+       0: ldc           #73                 // String helperBowBackGood1
+       2: invokestatic  #9                  // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+       5: return
+
+  private void good1() throws java.lang.InterruptedException;
+    Code:
+       0: new           #44                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01
+       3: dup
+       4: invokespecial #50                 // Method "<init>":()V
+       7: astore_1
+       8: new           #44                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01
+      11: dup
+      12: invokespecial #50                 // Method "<init>":()V
+      15: astore_2
+      16: new           #18                 // class java/lang/Thread
+      19: dup
+      20: new           #74                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$3
+      23: dup
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokespecial #76                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$3."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      30: invokespecial #56                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      33: astore_3
+      34: new           #18                 // class java/lang/Thread
+      37: dup
+      38: new           #77                 // class testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$4
+      41: dup
+      42: aload_0
+      43: aload_2
+      44: aload_1
+      45: invokespecial #79                 // Method testcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01$4."<init>":(Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;Ltestcases/CWE833_Deadlock/CWE833_Deadlock__synchronized_methods_Thread_01;)V
+      48: invokespecial #56                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      51: astore        4
+      53: aload_3
+      54: invokevirtual #62                 // Method java/lang/Thread.start:()V
+      57: aload         4
+      59: invokevirtual #62                 // Method java/lang/Thread.start:()V
+      62: aload_3
+      63: invokevirtual #65                 // Method java/lang/Thread.join:()V
+      66: aload         4
+      68: invokevirtual #65                 // Method java/lang/Thread.join:()V
+      71: return
+
+  public void good() throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: invokevirtual #80                 // Method good1:()V
+       4: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #83                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}

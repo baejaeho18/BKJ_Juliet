@@ -1,0 +1,526 @@
+Compiled from "CWE90_LDAP_Injection__listen_tcp_75b.java"
+public class testcases.CWE90_LDAP_Injection.CWE90_LDAP_Injection__listen_tcp_75b {
+  public testcases.CWE90_LDAP_Injection.CWE90_LDAP_Injection__listen_tcp_75b();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void badSink(byte[]) throws java.lang.Throwable;
+    Code:
+       0: aconst_null
+       1: astore_2
+       2: aconst_null
+       3: astore_3
+       4: new           #7                  // class java/io/ByteArrayInputStream
+       7: dup
+       8: aload_1
+       9: invokespecial #9                  // Method java/io/ByteArrayInputStream."<init>":([B)V
+      12: astore_2
+      13: new           #12                 // class java/io/ObjectInputStream
+      16: dup
+      17: aload_2
+      18: invokespecial #14                 // Method java/io/ObjectInputStream."<init>":(Ljava/io/InputStream;)V
+      21: astore_3
+      22: aload_3
+      23: invokevirtual #17                 // Method java/io/ObjectInputStream.readObject:()Ljava/lang/Object;
+      26: checkcast     #21                 // class java/lang/String
+      29: astore        4
+      31: new           #23                 // class java/util/Hashtable
+      34: dup
+      35: invokespecial #25                 // Method java/util/Hashtable."<init>":()V
+      38: astore        5
+      40: aload         5
+      42: ldc           #28                 // String java.naming.factory.initial
+      44: ldc           #30                 // String com.sun.jndi.ldap.LdapCtxFactory
+      46: invokevirtual #32                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      49: pop
+      50: aload         5
+      52: ldc           #36                 // String java.naming.provider.url
+      54: ldc           #38                 // String ldap://localhost:389
+      56: invokevirtual #32                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      59: pop
+      60: aconst_null
+      61: astore        6
+      63: new           #40                 // class javax/naming/directory/InitialDirContext
+      66: dup
+      67: aload         5
+      69: invokespecial #42                 // Method javax/naming/directory/InitialDirContext."<init>":(Ljava/util/Hashtable;)V
+      72: astore        6
+      74: aload         4
+      76: invokedynamic #45,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      81: astore        7
+      83: aload         6
+      85: ldc           #49                 // String
+      87: aload         7
+      89: aconst_null
+      90: invokeinterface #51,  4           // InterfaceMethod javax/naming/directory/DirContext.search:(Ljava/lang/String;Ljava/lang/String;Ljavax/naming/directory/SearchControls;)Ljavax/naming/NamingEnumeration;
+      95: astore        8
+      97: aload         8
+      99: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     104: ifeq          203
+     107: aload         8
+     109: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     114: checkcast     #66                 // class javax/naming/directory/SearchResult
+     117: astore        9
+     119: aload         9
+     121: invokevirtual #68                 // Method javax/naming/directory/SearchResult.getAttributes:()Ljavax/naming/directory/Attributes;
+     124: astore        10
+     126: aload         10
+     128: invokeinterface #72,  1           // InterfaceMethod javax/naming/directory/Attributes.getAll:()Ljavax/naming/NamingEnumeration;
+     133: astore        11
+     135: aload         11
+     137: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     142: ifeq          200
+     145: aload         11
+     147: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     152: checkcast     #78                 // class javax/naming/directory/Attribute
+     155: astore        12
+     157: aload         12
+     159: invokeinterface #80,  1           // InterfaceMethod javax/naming/directory/Attribute.getAll:()Ljavax/naming/NamingEnumeration;
+     164: astore        13
+     166: aload         13
+     168: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     173: ifeq          197
+     176: aload         13
+     178: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     183: invokevirtual #81                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     186: invokedynamic #85,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     191: invokestatic  #86                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     194: goto          166
+     197: goto          135
+     200: goto          97
+     203: aload         6
+     205: ifnull        319
+     208: aload         6
+     210: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     215: goto          319
+     218: astore        7
+     220: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     223: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     226: ldc           #107                // String Error closing DirContext
+     228: aload         7
+     230: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     233: goto          319
+     236: astore        7
+     238: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     241: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     244: ldc           #115                // String The LDAP service was not found or login failed.
+     246: aload         7
+     248: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     251: aload         6
+     253: ifnull        319
+     256: aload         6
+     258: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     263: goto          319
+     266: astore        7
+     268: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     271: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     274: ldc           #107                // String Error closing DirContext
+     276: aload         7
+     278: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     281: goto          319
+     284: astore        14
+     286: aload         6
+     288: ifnull        316
+     291: aload         6
+     293: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     298: goto          316
+     301: astore        15
+     303: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     306: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     309: ldc           #107                // String Error closing DirContext
+     311: aload         15
+     313: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     316: aload         14
+     318: athrow
+     319: aload_3
+     320: ifnull        327
+     323: aload_3
+     324: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     327: goto          345
+     330: astore        4
+     332: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     335: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     338: ldc           #120                // String Error closing ObjectInputStream
+     340: aload         4
+     342: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     345: aload_2
+     346: ifnull        353
+     349: aload_2
+     350: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     353: goto          571
+     356: astore        4
+     358: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     361: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     364: ldc           #123                // String Error closing ByteArrayInputStream
+     366: aload         4
+     368: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     371: goto          571
+     374: astore        4
+     376: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     379: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     382: ldc           #125                // String IOException in deserialization
+     384: aload         4
+     386: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     389: aload_3
+     390: ifnull        397
+     393: aload_3
+     394: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     397: goto          415
+     400: astore        4
+     402: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     405: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     408: ldc           #120                // String Error closing ObjectInputStream
+     410: aload         4
+     412: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     415: aload_2
+     416: ifnull        423
+     419: aload_2
+     420: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     423: goto          571
+     426: astore        4
+     428: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     431: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     434: ldc           #123                // String Error closing ByteArrayInputStream
+     436: aload         4
+     438: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     441: goto          571
+     444: astore        4
+     446: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     449: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     452: ldc           #129                // String ClassNotFoundException in deserialization
+     454: aload         4
+     456: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     459: aload_3
+     460: ifnull        467
+     463: aload_3
+     464: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     467: goto          485
+     470: astore        4
+     472: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     475: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     478: ldc           #120                // String Error closing ObjectInputStream
+     480: aload         4
+     482: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     485: aload_2
+     486: ifnull        493
+     489: aload_2
+     490: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     493: goto          571
+     496: astore        4
+     498: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     501: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     504: ldc           #123                // String Error closing ByteArrayInputStream
+     506: aload         4
+     508: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     511: goto          571
+     514: astore        16
+     516: aload_3
+     517: ifnull        524
+     520: aload_3
+     521: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     524: goto          542
+     527: astore        17
+     529: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     532: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     535: ldc           #120                // String Error closing ObjectInputStream
+     537: aload         17
+     539: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     542: aload_2
+     543: ifnull        550
+     546: aload_2
+     547: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     550: goto          568
+     553: astore        17
+     555: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     558: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     561: ldc           #123                // String Error closing ByteArrayInputStream
+     563: aload         17
+     565: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     568: aload         16
+     570: athrow
+     571: return
+    Exception table:
+       from    to  target type
+         208   215   218   Class javax/naming/NamingException
+          63   203   236   Class javax/naming/NamingException
+         256   263   266   Class javax/naming/NamingException
+          63   203   284   any
+         236   251   284   any
+         291   298   301   Class javax/naming/NamingException
+         284   286   284   any
+         319   327   330   Class java/io/IOException
+         345   353   356   Class java/io/IOException
+           4   319   374   Class java/io/IOException
+         389   397   400   Class java/io/IOException
+         415   423   426   Class java/io/IOException
+           4   319   444   Class java/lang/ClassNotFoundException
+         459   467   470   Class java/io/IOException
+         485   493   496   Class java/io/IOException
+           4   319   514   any
+         374   389   514   any
+         444   459   514   any
+         516   524   527   Class java/io/IOException
+         542   550   553   Class java/io/IOException
+         514   516   514   any
+
+  public void goodG2BSink(byte[]) throws java.lang.Throwable;
+    Code:
+       0: aconst_null
+       1: astore_2
+       2: aconst_null
+       3: astore_3
+       4: new           #7                  // class java/io/ByteArrayInputStream
+       7: dup
+       8: aload_1
+       9: invokespecial #9                  // Method java/io/ByteArrayInputStream."<init>":([B)V
+      12: astore_2
+      13: new           #12                 // class java/io/ObjectInputStream
+      16: dup
+      17: aload_2
+      18: invokespecial #14                 // Method java/io/ObjectInputStream."<init>":(Ljava/io/InputStream;)V
+      21: astore_3
+      22: aload_3
+      23: invokevirtual #17                 // Method java/io/ObjectInputStream.readObject:()Ljava/lang/Object;
+      26: checkcast     #21                 // class java/lang/String
+      29: astore        4
+      31: new           #23                 // class java/util/Hashtable
+      34: dup
+      35: invokespecial #25                 // Method java/util/Hashtable."<init>":()V
+      38: astore        5
+      40: aload         5
+      42: ldc           #28                 // String java.naming.factory.initial
+      44: ldc           #30                 // String com.sun.jndi.ldap.LdapCtxFactory
+      46: invokevirtual #32                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      49: pop
+      50: aload         5
+      52: ldc           #36                 // String java.naming.provider.url
+      54: ldc           #38                 // String ldap://localhost:389
+      56: invokevirtual #32                 // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      59: pop
+      60: aconst_null
+      61: astore        6
+      63: new           #40                 // class javax/naming/directory/InitialDirContext
+      66: dup
+      67: aload         5
+      69: invokespecial #42                 // Method javax/naming/directory/InitialDirContext."<init>":(Ljava/util/Hashtable;)V
+      72: astore        6
+      74: aload         4
+      76: invokedynamic #45,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      81: astore        7
+      83: aload         6
+      85: ldc           #49                 // String
+      87: aload         7
+      89: aconst_null
+      90: invokeinterface #51,  4           // InterfaceMethod javax/naming/directory/DirContext.search:(Ljava/lang/String;Ljava/lang/String;Ljavax/naming/directory/SearchControls;)Ljavax/naming/NamingEnumeration;
+      95: astore        8
+      97: aload         8
+      99: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     104: ifeq          203
+     107: aload         8
+     109: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     114: checkcast     #66                 // class javax/naming/directory/SearchResult
+     117: astore        9
+     119: aload         9
+     121: invokevirtual #68                 // Method javax/naming/directory/SearchResult.getAttributes:()Ljavax/naming/directory/Attributes;
+     124: astore        10
+     126: aload         10
+     128: invokeinterface #72,  1           // InterfaceMethod javax/naming/directory/Attributes.getAll:()Ljavax/naming/NamingEnumeration;
+     133: astore        11
+     135: aload         11
+     137: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     142: ifeq          200
+     145: aload         11
+     147: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     152: checkcast     #78                 // class javax/naming/directory/Attribute
+     155: astore        12
+     157: aload         12
+     159: invokeinterface #80,  1           // InterfaceMethod javax/naming/directory/Attribute.getAll:()Ljavax/naming/NamingEnumeration;
+     164: astore        13
+     166: aload         13
+     168: invokeinterface #57,  1           // InterfaceMethod javax/naming/NamingEnumeration.hasMore:()Z
+     173: ifeq          197
+     176: aload         13
+     178: invokeinterface #63,  1           // InterfaceMethod javax/naming/NamingEnumeration.next:()Ljava/lang/Object;
+     183: invokevirtual #81                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     186: invokedynamic #85,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     191: invokestatic  #86                 // Method testcasesupport/IO.writeLine:(Ljava/lang/String;)V
+     194: goto          166
+     197: goto          135
+     200: goto          97
+     203: aload         6
+     205: ifnull        319
+     208: aload         6
+     210: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     215: goto          319
+     218: astore        7
+     220: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     223: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     226: ldc           #107                // String Error closing DirContext
+     228: aload         7
+     230: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     233: goto          319
+     236: astore        7
+     238: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     241: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     244: ldc           #115                // String The LDAP service was not found or login failed.
+     246: aload         7
+     248: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     251: aload         6
+     253: ifnull        319
+     256: aload         6
+     258: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     263: goto          319
+     266: astore        7
+     268: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     271: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     274: ldc           #107                // String Error closing DirContext
+     276: aload         7
+     278: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     281: goto          319
+     284: astore        14
+     286: aload         6
+     288: ifnull        316
+     291: aload         6
+     293: invokeinterface #92,  1           // InterfaceMethod javax/naming/directory/DirContext.close:()V
+     298: goto          316
+     301: astore        15
+     303: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     306: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     309: ldc           #107                // String Error closing DirContext
+     311: aload         15
+     313: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     316: aload         14
+     318: athrow
+     319: aload_3
+     320: ifnull        327
+     323: aload_3
+     324: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     327: goto          345
+     330: astore        4
+     332: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     335: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     338: ldc           #120                // String Error closing ObjectInputStream
+     340: aload         4
+     342: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     345: aload_2
+     346: ifnull        353
+     349: aload_2
+     350: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     353: goto          571
+     356: astore        4
+     358: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     361: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     364: ldc           #123                // String Error closing ByteArrayInputStream
+     366: aload         4
+     368: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     371: goto          571
+     374: astore        4
+     376: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     379: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     382: ldc           #125                // String IOException in deserialization
+     384: aload         4
+     386: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     389: aload_3
+     390: ifnull        397
+     393: aload_3
+     394: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     397: goto          415
+     400: astore        4
+     402: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     405: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     408: ldc           #120                // String Error closing ObjectInputStream
+     410: aload         4
+     412: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     415: aload_2
+     416: ifnull        423
+     419: aload_2
+     420: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     423: goto          571
+     426: astore        4
+     428: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     431: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     434: ldc           #123                // String Error closing ByteArrayInputStream
+     436: aload         4
+     438: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     441: goto          571
+     444: astore        4
+     446: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     449: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     452: ldc           #129                // String ClassNotFoundException in deserialization
+     454: aload         4
+     456: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     459: aload_3
+     460: ifnull        467
+     463: aload_3
+     464: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     467: goto          485
+     470: astore        4
+     472: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     475: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     478: ldc           #120                // String Error closing ObjectInputStream
+     480: aload         4
+     482: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     485: aload_2
+     486: ifnull        493
+     489: aload_2
+     490: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     493: goto          571
+     496: astore        4
+     498: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     501: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     504: ldc           #123                // String Error closing ByteArrayInputStream
+     506: aload         4
+     508: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     511: goto          571
+     514: astore        16
+     516: aload_3
+     517: ifnull        524
+     520: aload_3
+     521: invokevirtual #117                // Method java/io/ObjectInputStream.close:()V
+     524: goto          542
+     527: astore        17
+     529: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     532: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     535: ldc           #120                // String Error closing ObjectInputStream
+     537: aload         17
+     539: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     542: aload_2
+     543: ifnull        550
+     546: aload_2
+     547: invokevirtual #122                // Method java/io/ByteArrayInputStream.close:()V
+     550: goto          568
+     553: astore        17
+     555: getstatic     #97                 // Field testcasesupport/IO.logger:Ljava/util/logging/Logger;
+     558: getstatic     #101                // Field java/util/logging/Level.WARNING:Ljava/util/logging/Level;
+     561: ldc           #123                // String Error closing ByteArrayInputStream
+     563: aload         17
+     565: invokevirtual #109                // Method java/util/logging/Logger.log:(Ljava/util/logging/Level;Ljava/lang/String;Ljava/lang/Throwable;)V
+     568: aload         16
+     570: athrow
+     571: return
+    Exception table:
+       from    to  target type
+         208   215   218   Class javax/naming/NamingException
+          63   203   236   Class javax/naming/NamingException
+         256   263   266   Class javax/naming/NamingException
+          63   203   284   any
+         236   251   284   any
+         291   298   301   Class javax/naming/NamingException
+         284   286   284   any
+         319   327   330   Class java/io/IOException
+         345   353   356   Class java/io/IOException
+           4   319   374   Class java/io/IOException
+         389   397   400   Class java/io/IOException
+         415   423   426   Class java/io/IOException
+           4   319   444   Class java/lang/ClassNotFoundException
+         459   467   470   Class java/io/IOException
+         485   493   496   Class java/io/IOException
+           4   319   514   any
+         374   389   514   any
+         444   459   514   any
+         516   524   527   Class java/io/IOException
+         542   550   553   Class java/io/IOException
+         514   516   514   any
+}

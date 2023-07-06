@@ -1,0 +1,93 @@
+Compiled from "CWE81_XSS_Error_Message__Servlet_getParameter_Servlet_07.java"
+public class testcases.CWE81_XSS_Error_Message.CWE81_XSS_Error_Message__Servlet_getParameter_Servlet_07 extends testcasesupport.AbstractTestCaseServlet {
+  private int privateFive;
+
+  public testcases.CWE81_XSS_Error_Message.CWE81_XSS_Error_Message__Servlet_getParameter_Servlet_07();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method testcasesupport/AbstractTestCaseServlet."<init>":()V
+       4: aload_0
+       5: iconst_5
+       6: putfield      #7                  // Field privateFive:I
+       9: return
+
+  public void bad(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     20
+       8: aload_1
+       9: ldc           #13                 // String name
+      11: invokeinterface #15,  2           // InterfaceMethod javax/servlet/http/HttpServletRequest.getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      16: astore_3
+      17: goto          22
+      20: aconst_null
+      21: astore_3
+      22: aload_3
+      23: ifnull        41
+      26: aload_2
+      27: sipush        404
+      30: aload_3
+      31: invokedynamic #21,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      36: invokeinterface #24,  3           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendError:(ILjava/lang/String;)V
+      41: return
+
+  private void goodG2B1(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpeq     13
+       8: aconst_null
+       9: astore_3
+      10: goto          16
+      13: ldc           #30                 // String foo
+      15: astore_3
+      16: aload_3
+      17: ifnull        35
+      20: aload_2
+      21: sipush        404
+      24: aload_3
+      25: invokedynamic #21,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      30: invokeinterface #24,  3           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendError:(ILjava/lang/String;)V
+      35: return
+
+  private void goodG2B2(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field privateFive:I
+       4: iconst_5
+       5: if_icmpne     14
+       8: ldc           #30                 // String foo
+      10: astore_3
+      11: goto          16
+      14: aconst_null
+      15: astore_3
+      16: aload_3
+      17: ifnull        35
+      20: aload_2
+      21: sipush        404
+      24: aload_3
+      25: invokedynamic #21,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      30: invokeinterface #24,  3           // InterfaceMethod javax/servlet/http/HttpServletResponse.sendError:(ILjava/lang/String;)V
+      35: return
+
+  public void good(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #32                 // Method goodG2B1:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #36                 // Method goodG2B2:(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+      12: return
+
+  public static void main(java.lang.String[]) throws java.lang.ClassNotFoundException, java.lang.InstantiationException, java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: invokestatic  #39                 // Method mainFromParent:([Ljava/lang/String;)V
+       4: return
+}
